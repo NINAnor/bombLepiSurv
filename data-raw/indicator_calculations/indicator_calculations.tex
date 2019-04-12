@@ -1,0 +1,1194 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Indicator calculations},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Indicator calculations}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{}
+  \preauthor{}\postauthor{}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{10 April, 2019}
+
+
+%\linespread{1.3}
+
+
+% You know, for landscape
+\usepackage{lscape}
+\usepackage{pdfpages}
+
+
+% pandoc does not parse latex env - https://groups.google.com/forum/?fromgroups=#!topic/pandoc-discuss/oZETB5Ii1Cw
+\newcommand{\blandscape}{\begin{landscape}}
+\newcommand{\elandscape}{\end{landscape}}
+
+% Make new page before each section
+%\let\stdsection\section
+%\renewcommand\section{\newpage\stdsection}
+
+% Highlight inline `code`
+\usepackage{soul}
+\usepackage{xcolor}
+
+\definecolor{Light}{gray}{.97}
+\sethlcolor{Light}
+
+\let\OldTexttt\texttt
+\renewcommand{\texttt}[1]{\OldTexttt{\hl{#1}}}
+
+
+\clubpenalty=10000      %kara za sierotki
+\widowpenalty=10000  % nie pozostawiaj wdów
+\brokenpenalty=10000    % nie dziel wyrazów miêdzy stronami
+\exhyphenpenalty=999999   % nie dziel s³ów z myœlnikiem
+\righthyphenmin=3     % dziel minimum 3 litery
+
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.35}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(bombLepiSurv)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: bombLepiSurv
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{humlesommerfConnect}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Indicator calculations}\label{indicator-calculations}
+
+\subsection{Get weights}\label{get-weights}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diffWeights <-}\StringTok{ }\KeywordTok{getDiffWeights}\NormalTok{()}
+\NormalTok{amountWeights <-}\StringTok{ }\KeywordTok{getAmountWeights}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{runAll =}\StringTok{ }\NormalTok{F}
+\NormalTok{nIter <-}\StringTok{ }\DecValTok{9999}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Calculate Indicators}\label{calculate-indicators}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# hObs2009TrondGress <- getComplData(type = "bumblebees",}
+\CommentTok{#                                    region_short = "trond",}
+\CommentTok{#                                    habitat = "gressmark",}
+\CommentTok{#                                    year = 2009)}
+\CommentTok{# }
+\CommentTok{# hInd2009TrondGress <- calcInd(type = "bumblebees",}
+\CommentTok{#                               region_short = "trond",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2009,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+\CommentTok{# }
+\CommentTok{# hInd2009TrondSkog <- calcInd(type = "bumblebees",}
+\CommentTok{#                               region_short = "trond",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2009,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+
+\NormalTok{hInd2009OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2009}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2009OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2009}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\CommentTok{# hInd2009SorGress <- calcInd(type = "bumblebees",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2009,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+\CommentTok{# hInd2009SorSkog <- calcInd(type = "bumblebees",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2009,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+
+\KeywordTok{save}\NormalTok{(hInd2009OstGress, hInd2009OstSkog, }\DataTypeTok{file =} \StringTok{"out/h2009Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# hObs2010TrondGress <- getComplData(type = "bumblebees",}
+\CommentTok{#                                    region_short = "trond",}
+\CommentTok{#                                    habitat = "gressmark",}
+\CommentTok{#                                    year = 2010)}
+\CommentTok{# }
+\CommentTok{# hInd2010TrondGress <- calcInd(type = "bumblebees",}
+\CommentTok{#                               region_short = "trond",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2010,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+\CommentTok{# hObs2010TrondSkog <- getComplData(type = "bumblebees",}
+\CommentTok{#                                    region_short = "trond",}
+\CommentTok{#                                    habitat = "skogsmark",}
+\CommentTok{#                                    year = 2010)}
+\CommentTok{# hInd2010TrondSkog <- calcInd(type = "bumblebees",}
+\CommentTok{#                               region_short = "trond",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2010,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+
+\NormalTok{hInd2010OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2010}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2010OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2010}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\CommentTok{# hInd2010SorGress <- calcInd(type = "bumblebees",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2010,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+\CommentTok{# hInd2010SorSkog <- calcInd(type = "bumblebees",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2010,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+
+\KeywordTok{save}\NormalTok{(hInd2010OstGress, hInd2010OstSkog, }\DataTypeTok{file =} \StringTok{"out/h2010Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# hObs2011rondGress <- getComplData(type = "bumblebees",}
+\CommentTok{#                                    region_short = "trond",}
+\CommentTok{#                                    habitat = "gressmark",}
+\CommentTok{#                                    year = 2011)}
+\CommentTok{# }
+\CommentTok{# hInd2011TrondGress <- calcInd(type = "bumblebees",}
+\CommentTok{#                               region_short = "trond",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2011,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+\CommentTok{#        }
+\CommentTok{# hInd2011TrondSkog <- calcInd(type = "bumblebees",}
+\CommentTok{#                               region_short = "trond",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2011,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+
+\NormalTok{hInd2011OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2011}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2011OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2011}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\CommentTok{# hInd2011SorGress <- calcInd(type = "bumblebees",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2011,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+\CommentTok{# hInd2011SorSkog <- calcInd(type = "bumblebees",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2011,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+
+\KeywordTok{save}\NormalTok{(hInd2011OstGress, hInd2011OstSkog, }\DataTypeTok{file =} \StringTok{"out/h2011Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hInd2012TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2012}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{hInd2012TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2012}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2012OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2012}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2012OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2012}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\CommentTok{# hInd2012SorGress <- calcInd(type = "bumblebees",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2012,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+\CommentTok{# hInd2012SorSkog <- calcInd(type = "bumblebees",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2012,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+
+\KeywordTok{save}\NormalTok{(hInd2012TrondGress, hInd2012TrondSkog, hInd2012OstGress, hInd2012OstSkog, }\DataTypeTok{file =} \StringTok{"out/h2012Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hInd2013TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2013}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{hInd2013TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2013}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2013OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2013}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2013OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2013}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2013SorGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2013}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2013SorSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2013}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+
+\KeywordTok{save}\NormalTok{(hInd2013TrondGress, hInd2013TrondSkog, hInd2013OstGress, hInd2013OstSkog, hInd2013SorGress, hInd2013SorSkog, }\DataTypeTok{file =} \StringTok{"out/h2013Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hInd2014TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2014}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{hInd2014TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2014}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2014OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2014}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2014OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2014}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2014SorGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2014}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2014SorSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2014}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+
+\KeywordTok{save}\NormalTok{(hInd2014TrondGress, hInd2014TrondSkog, hInd2014OstGress, hInd2014OstSkog, hInd2014SorGress, hInd2014SorSkog, }\DataTypeTok{file =} \StringTok{"out/h2014Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hInd2015TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2015}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{hInd2015TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2015}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2015OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2015}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2015OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2015}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2015SorGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2015}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2015SorSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2015}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+
+\KeywordTok{save}\NormalTok{(hInd2015TrondGress, hInd2015TrondSkog, hInd2015OstGress, hInd2015OstSkog, hInd2015SorGress, hInd2015SorSkog, }\DataTypeTok{file =} \StringTok{"out/h2015Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hInd2016TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2016}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{hInd2016TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2016}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2016OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2016}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2016OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2016}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2016SorGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2016}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2016SorSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2016}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+
+\KeywordTok{save}\NormalTok{(hInd2016TrondGress, hInd2016TrondSkog, hInd2016OstGress, hInd2016OstSkog, hInd2016SorGress, hInd2016SorSkog, }\DataTypeTok{file =} \StringTok{"out/h2016Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hInd2017TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{hInd2017TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2017OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2017OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2017SorGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2017SorSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+
+\KeywordTok{save}\NormalTok{(hInd2017TrondGress, hInd2017TrondSkog, hInd2017OstGress, hInd2017OstSkog, hInd2017SorGress, hInd2017SorSkog, }\DataTypeTok{file =} \StringTok{"out/h2017Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hInd2018TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2018}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{hInd2018TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2018}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2018OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2018}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2018OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2018}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2018SorGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2018}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{hInd2018SorSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"bumblebees"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2018}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+
+\KeywordTok{save}\NormalTok{(hInd2018TrondGress, hInd2018TrondSkog, hInd2018OstGress, hInd2018OstSkog, hInd2018SorGress, hInd2018SorSkog, }\DataTypeTok{file =} \StringTok{"out/h2018Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Butterflies}\label{butterflies}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# hObs2009TrondGress <- getComplData(type = "butterflies",}
+\CommentTok{#                                    region_short = "trond",}
+\CommentTok{#                                    habitat = "gressmark",}
+\CommentTok{#                                    year = 2009)}
+\CommentTok{# }
+\CommentTok{# sInd2009TrondGress <- calcInd(type = "butterflies",}
+\CommentTok{#                               region_short = "trond",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2009,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+\CommentTok{# }
+\CommentTok{# sInd2009TrondSkog <- calcInd(type = "butterflies",}
+\CommentTok{#                               region_short = "trond",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2009,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+
+\NormalTok{sInd2009OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2009}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2009OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2009}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\CommentTok{# sInd2009SorGress <- calcInd(type = "butterflies",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2009,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+\CommentTok{# sInd2009SorSkog <- calcInd(type = "butterflies",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2009,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+
+\KeywordTok{save}\NormalTok{(sInd2009OstGress, sInd2009OstSkog, }\DataTypeTok{file =} \StringTok{"out/s2009Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# sObs2010TrondGress <- getComplData(type = "butterflies",}
+\CommentTok{#                               region_short = "trond",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2010)}
+\CommentTok{# }
+\CommentTok{# sInd2010TrondGress <- calcInd(type = "butterflies",}
+\CommentTok{#                               region_short = "trond",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2010,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+\CommentTok{# }
+\CommentTok{# sObs2010TrondSkog <- getComplData(type = "butterflies",}
+\CommentTok{#                               region_short = "trond",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2010)}
+\CommentTok{# }
+\CommentTok{# sInd2010TrondSkog <- calcInd(type = "butterflies",}
+\CommentTok{#                               region_short = "trond",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2010,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+
+\NormalTok{sInd2010OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2010}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2010OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2010}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\CommentTok{# sInd2010SorGress <- calcInd(type = "butterflies",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2010,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+\CommentTok{# sInd2010SorSkog <- calcInd(type = "butterflies",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2010,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+
+\KeywordTok{save}\NormalTok{(sInd2010OstGress, sInd2010OstSkog, }\DataTypeTok{file =} \StringTok{"out/s2010Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# hObs2011rondGress <- getComplData(type = "butterflies",}
+\CommentTok{#                                    region_short = "trond",}
+\CommentTok{#                                    habitat = "gressmark",}
+\CommentTok{#                                    year = 2011)}
+\CommentTok{# }
+\CommentTok{# sInd2011TrondGress <- calcInd(type = "butterflies",}
+\CommentTok{#                               region_short = "trond",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2011,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+\CommentTok{#        }
+\CommentTok{# sInd2011TrondSkog <- calcInd(type = "butterflies",}
+\CommentTok{#                               region_short = "trond",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2011,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+
+\NormalTok{sInd2011OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2011}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2011OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2011}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\CommentTok{# sInd2011SorGress <- calcInd(type = "butterflies",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2011,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+\CommentTok{# sInd2011SorSkog <- calcInd(type = "butterflies",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2011,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+
+\KeywordTok{save}\NormalTok{(sInd2011OstGress, sInd2011OstSkog, }\DataTypeTok{file =} \StringTok{"out/s2011Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sInd2012TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2012}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{sInd2012TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2012}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2012OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2012}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2012OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2012}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\CommentTok{# sInd2012SorGress <- calcInd(type = "butterflies",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "gressmark",}
+\CommentTok{#                               year = 2012,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+\CommentTok{# sInd2012SorSkog <- calcInd(type = "butterflies",}
+\CommentTok{#                               region_short = "sor",}
+\CommentTok{#                               habitat = "skogsmark",}
+\CommentTok{#                               year = 2012,}
+\CommentTok{#                               nIter = nIter}
+\CommentTok{#                               )}
+
+\KeywordTok{save}\NormalTok{(sInd2012TrondGress, sInd2012TrondSkog, sInd2012OstGress, sInd2012OstSkog, }\DataTypeTok{file =} \StringTok{"out/s2012Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sInd2013TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2013}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{sInd2013TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2013}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2013OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2013}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2013OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2013}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2013SorGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2013}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2013SorSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2013}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+
+\KeywordTok{save}\NormalTok{(sInd2013TrondGress, sInd2013TrondSkog, sInd2013OstGress, sInd2013OstSkog, sInd2013SorGress, sInd2013SorSkog, }\DataTypeTok{file =} \StringTok{"out/s2013Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sInd2014TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2014}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{sInd2014TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2014}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2014OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2014}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2014OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2014}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2014SorGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2014}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2014SorSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2014}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+
+\KeywordTok{save}\NormalTok{(sInd2014TrondGress, sInd2014TrondSkog, sInd2014OstGress, sInd2014OstSkog, sInd2014SorGress, sInd2014SorSkog, }\DataTypeTok{file =} \StringTok{"out/s2014Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sInd2015TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2015}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{sInd2015TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2015}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2015OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2015}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2015OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2015}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2015SorGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2015}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2015SorSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2015}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+
+\KeywordTok{save}\NormalTok{(sInd2015TrondGress, sInd2015TrondSkog, sInd2015OstGress, sInd2015OstSkog, sInd2015SorGress, sInd2015SorSkog, }\DataTypeTok{file =} \StringTok{"out/s2015Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sInd2016TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2016}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{sInd2016TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2016}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2016OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2016}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2016OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2016}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2016SorGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2016}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2016SorSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2016}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+
+\KeywordTok{save}\NormalTok{(sInd2016TrondGress, sInd2016TrondSkog, sInd2016OstGress, sInd2016OstSkog, sInd2016SorGress, sInd2016SorSkog, }\DataTypeTok{file =} \StringTok{"out/s2016Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sInd2017TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{sInd2017TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2017OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2017OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2017SorGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2017SorSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+
+\KeywordTok{save}\NormalTok{(sInd2017TrondGress, sInd2017TrondSkog, sInd2017OstGress, sInd2017OstSkog, sInd2017SorGress, sInd2017SorSkog, }\DataTypeTok{file =} \StringTok{"out/s2017Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sInd2018TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2018}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{sInd2018TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2018}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2018OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2018}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2018OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2018}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2018SorGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2018}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2018SorSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2018}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+
+\KeywordTok{save}\NormalTok{(sInd2018TrondGress, sInd2018TrondSkog, sInd2018OstGress, sInd2018OstSkog, sInd2018SorGress, sInd2018SorSkog, }\DataTypeTok{file =} \StringTok{"out/s2018Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sInd2017TrondGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+       
+\NormalTok{sInd2017TrondSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"trond"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2017OstGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2017OstSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"ost"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2017SorGress <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"gressmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+\NormalTok{sInd2017SorSkog <-}\StringTok{ }\KeywordTok{calcInd}\NormalTok{(}\DataTypeTok{type =} \StringTok{"butterflies"}\NormalTok{,}
+                              \DataTypeTok{region_short =} \StringTok{"sor"}\NormalTok{,}
+                              \DataTypeTok{habitat =} \StringTok{"skogsmark"}\NormalTok{,}
+                              \DataTypeTok{year =} \DecValTok{2017}\NormalTok{,}
+                              \DataTypeTok{nIter =}\NormalTok{ nIter}
+\NormalTok{                              )}
+
+
+\KeywordTok{save}\NormalTok{(sInd2017TrondGress, sInd2017TrondSkog, sInd2017OstGress, sInd2017OstSkog, sInd2017SorGress, sInd2017SorSkog, }\DataTypeTok{file =} \StringTok{"out/s2017Ind.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{use_data}\NormalTok{(sInd2018TrondGress, sInd2018TrondSkog, sInd2018OstGress, sInd2018OstSkog, sInd2018SorGress, sInd2018SorSkog,}
+\NormalTok{sInd2017TrondGress, sInd2017TrondSkog, sInd2017OstGress, sInd2017OstSkog, sInd2017SorGress, sInd2017SorSkog,}
+\NormalTok{sInd2016TrondGress, sInd2016TrondSkog, sInd2016OstGress, sInd2016OstSkog, sInd2016SorGress, sInd2016SorSkog,}
+\NormalTok{sInd2015TrondGress, sInd2015TrondSkog, sInd2015OstGress, sInd2015OstSkog, sInd2015SorGress, sInd2015SorSkog,}
+\NormalTok{sInd2014TrondGress, sInd2014TrondSkog, sInd2014OstGress, sInd2014OstSkog, sInd2014SorGress, sInd2014SorSkog,}
+\NormalTok{sInd2013TrondGress, sInd2013TrondSkog, sInd2013OstGress, sInd2013OstSkog, sInd2013SorGress, sInd2013SorSkog,}
+\NormalTok{sInd2012TrondGress, sInd2012TrondSkog, sInd2012OstGress, sInd2012OstSkog,}
+\NormalTok{sInd2011OstGress, sInd2011OstSkog,}
+\NormalTok{sInd2010OstGress, sInd2010OstSkog,}
+\NormalTok{sInd2009OstGress, sInd2009OstSkog)}
+
+\KeywordTok{use_data}\NormalTok{(hInd2018TrondGress, hInd2018TrondSkog, hInd2018OstGress, hInd2018OstSkog, hInd2018SorGress, hInd2018SorSkog,}
+\NormalTok{hInd2017TrondGress, hInd2017TrondSkog, hInd2017OstGress, hInd2017OstSkog, hInd2017SorGress, hInd2017SorSkog,}
+\NormalTok{hInd2016TrondGress, hInd2016TrondSkog, hInd2016OstGress, hInd2016OstSkog, hInd2016SorGress, hInd2016SorSkog,}
+\NormalTok{hInd2015TrondGress, hInd2015TrondSkog, hInd2015OstGress, hInd2015OstSkog, hInd2015SorGress, hInd2015SorSkog,}
+\NormalTok{hInd2014TrondGress, hInd2014TrondSkog, hInd2014OstGress, hInd2014OstSkog, hInd2014SorGress, hInd2014SorSkog,}
+\NormalTok{hInd2013TrondGress, hInd2013TrondSkog, hInd2013OstGress, hInd2013OstSkog, hInd2013SorGress, hInd2013SorSkog,}
+\NormalTok{hInd2012TrondGress, hInd2012TrondSkog, hInd2012OstGress, hInd2012OstSkog,}
+\NormalTok{hInd2011OstGress, hInd2011OstSkog,}
+\NormalTok{hInd2010OstGress, hInd2010OstSkog,}
+\NormalTok{hInd2009OstGress, hInd2009OstSkog)}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}

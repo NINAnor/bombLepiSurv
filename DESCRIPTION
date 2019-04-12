@@ -1,0 +1,25 @@
+Package: bombLepiSurv
+Title: Calculate Nature Index Indicator Values For The Norwegian Bumblebee And Butterfly Surveys
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Jens",
+           family = "Åström",
+           role = c("aut", "cre"),
+           email = "jens.astrom@nina.no")
+Description: This package collects the functions to calculate the Nature Index indicator values for the bumblebee and butterfly surveys in Norway. It also contains some convenience functions for working with the database, plotting and analysing the data.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Depends:
+  dplyr,
+  DBI,
+  RPostgres,
+  tidyr,
+  tibble
+Imports:
+  dplyr
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

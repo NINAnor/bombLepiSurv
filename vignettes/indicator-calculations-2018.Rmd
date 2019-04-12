@@ -1,0 +1,242 @@
+---
+title: "Bumblebee and buttterfly NI indicator calculations - 2018"
+author: "Jens Åström"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document:
+    toc: true
+    highlight: tango
+  rmarkdown::html_vignette:
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+```
+
+
+Intro
+==========
+
+
+Connect and get common data
+-------
+
+```{r}
+require(bombLepiSurv)
+humlesommerfConnect()
+require(ggplot2)
+require(NinaR)
+```
+
+
+Barplots
+=========
+
+```{r}
+allBombusGressmark2018 <- getAllData(type = "bumblebees",
+                        habitat = "gressmark",
+                        year = 2018,
+                        language = "norsk")
+
+
+
+
+surveyBarplot(allBombusGressmark2018) +
+  ggtitle("Humler i gressmark 2018")
+
+```
+
+```{r}
+allBombusSkogsmark2018 <- getAllData(type = "bumblebees",
+                        habitat = "skogsmark",
+                        year = 2018,
+                        language = "norsk")
+
+surveyBarplot(allBombusSkogsmark2018) +
+  ggtitle("Humler i skogsmark 2018")
+```
+
+
+```{r}
+allLepiSkogsmark2018 <- getAllData(type = "butterflies",
+                        habitat = "skogsmark",
+                        year = 2018,
+                        language = "norsk")
+
+surveyBarplot(allLepiSkogsmark2018) +
+  ggtitle("Dagsommerfugler i skogsmark 2018")
+```
+
+
+```{r}
+allLepiGressmark2018 <- getAllData(type = "butterflies",
+                        habitat = "gressmark",
+                        year = 2018,
+                        language = "norsk")
+
+surveyBarplot(allLepiGressmark2018) +
+  ggtitle("Dagsommerfugler i gressmark 2018")
+```
+
+
+Indicator value plots
+=========
+
+```{r}
+data("sInd2018TrondGress")
+data("sInd2018TrondSkog")
+data("sInd2018OstGress")
+data("sInd2018OstSkog")
+data("sInd2018SorGress")
+data("sInd2018SorSkog")
+data("sInd2017TrondGress")
+data("sInd2017TrondSkog")
+data("sInd2017OstGress")
+data("sInd2017OstSkog")
+data("sInd2017SorGress")
+data("sInd2017SorSkog")
+data("sInd2016TrondGress")
+data("sInd2016TrondSkog")
+data("sInd2016OstGress")
+data("sInd2016OstSkog")
+data("sInd2016SorGress")
+data("sInd2016SorSkog")
+data("sInd2015TrondGress")
+data("sInd2015TrondSkog")
+data("sInd2015OstGress")
+data("sInd2015OstSkog")
+data("sInd2015SorGress")
+data("sInd2015SorSkog")
+data("sInd2014TrondGress")
+data("sInd2014TrondSkog")
+data("sInd2014OstGress")
+data("sInd2014OstSkog")
+data("sInd2014SorGress")
+data("sInd2014SorSkog")
+data("sInd2013TrondGress")
+data("sInd2013TrondSkog")
+data("sInd2013OstGress")
+data("sInd2013OstSkog")
+data("sInd2013SorGress")
+data("sInd2013SorSkog")
+data("sInd2012TrondGress")
+data("sInd2012TrondSkog")
+data("sInd2012OstGress")
+data("sInd2012OstSkog")
+data("sInd2011OstGress")
+data("sInd2011OstSkog")
+data("sInd2010OstGress")
+data("sInd2010OstSkog")
+data("sInd2009OstGress")
+data("sInd2009OstSkog")
+data("hInd2018TrondGress")
+data("hInd2018TrondSkog")
+data("hInd2018OstGress")
+data("hInd2018OstSkog")
+data("hInd2018SorGress")
+data("hInd2018SorSkog")
+data("hInd2017TrondGress")
+data("hInd2017TrondSkog")
+data("hInd2017OstGress")
+data("hInd2017OstSkog")
+data("hInd2017SorGress")
+data("hInd2017SorSkog")
+data("hInd2016TrondGress")
+data("hInd2016TrondSkog")
+data("hInd2016OstGress")
+data("hInd2016OstSkog")
+data("hInd2016SorGress")
+data("hInd2016SorSkog")
+data("hInd2015TrondGress")
+data("hInd2015TrondSkog")
+data("hInd2015OstGress")
+data("hInd2015OstSkog")
+data("hInd2015SorGress")
+data("hInd2015SorSkog")
+data("hInd2014TrondGress")
+data("hInd2014TrondSkog")
+data("hInd2014OstGress")
+data("hInd2014OstSkog")
+data("hInd2014SorGress")
+data("hInd2014SorSkog")
+data("hInd2013TrondGress")
+data("hInd2013TrondSkog")
+data("hInd2013OstGress")
+data("hInd2013OstSkog")
+data("hInd2013SorGress")
+data("hInd2013SorSkog")
+data("hInd2012TrondGress")
+data("hInd2012TrondSkog")
+data("hInd2012OstGress")
+data("hInd2012OstSkog")
+data("hInd2011OstGress")
+data("hInd2011OstSkog")
+data("hInd2010OstGress")
+data("hInd2010OstSkog")
+data("hInd2009OstGress")
+data("hInd2009OstSkog")
+
+```
+
+
+
+```{r hu}
+hGressIndVals <- collectIndData(taxa = "bumblebees", habitat = "gressmark")
+
+indPlot(hGressIndVals,
+        confLevel = "95%",
+        lineWidth = 1,
+        dodge = 0.5,
+        pointSize = 4) +
+  ggtitle("Indikatorverdier for humler i gressmark")
+
+```
+
+
+```{r}
+hSkogIndVals <- collectIndData(taxa = "bumblebees", habitat = "skogsmark")
+
+indPlot(hSkogIndVals,
+       lineWidth = 1,
+       dodge = 0.5,
+       pointSize = 4)+
+  ggtitle("Indikatorverdier for humler i skogsmark")
+
+```
+
+
+
+```{r}
+sGressIndVals <- collectIndData(taxa = "butterflies", habitat = "gressmark")
+
+indPlot(sGressIndVals,
+       lineWidth = 1,
+       dodge = 0.5,
+       pointSize = 4)+
+  ggtitle("Indikatorverdier for dagsommerfugler i gressmark")
+
+```
+
+
+```{r}
+sSkogIndVals <- collectIndData(taxa = "butterflies", habitat = "skogsmark")
+
+indPlot(sSkogIndVals,
+        confLevel = "95%",
+        lineWidth = 1,
+        dodge = 0.5,
+        pointSize = 4)+
+  ggtitle("Indikatorverdier for dagsommerfugler i skogsmark")
+
+```
+
+
+

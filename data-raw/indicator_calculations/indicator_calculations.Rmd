@@ -1,0 +1,1228 @@
+---
+title: "Indicator calculations"
+author: ""
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  NinaR::jensAnalysis:
+    highlight: tango
+    fig_caption: yes
+    toc: yes
+---
+
+
+```{r, include = F}
+#Some common packages, loading rmarkdown doesn't like the messages from tidyverse, so we don't include this in the document'
+require(tidyverse)
+require(DBI)
+require(RPostgres)
+require(ggplot2)
+require(xtable)
+require(NinaR)
+require(usethis)
+```
+
+```{r}
+require(bombLepiSurv)
+humlesommerfConnect()
+```
+
+
+Indicator calculations
+==============
+
+
+Get weights
+-------
+```{r}
+diffWeights <- getDiffWeights()
+amountWeights <- getAmountWeights()
+```
+
+
+```{r}
+runAll = F
+nIter <- 9999
+
+```
+
+
+Calculate Indicators
+-------
+
+
+```{r, eval = runAll, echo = T}
+# hObs2009TrondGress <- getComplData(type = "bumblebees",
+#                                    region_short = "trond",
+#                                    habitat = "gressmark",
+#                                    year = 2009)
+# 
+# hInd2009TrondGress <- calcInd(type = "bumblebees",
+#                               region_short = "trond",
+#                               habitat = "gressmark",
+#                               year = 2009,
+#                               nIter = nIter
+#                               )
+# 
+# hInd2009TrondSkog <- calcInd(type = "bumblebees",
+#                               region_short = "trond",
+#                               habitat = "skogsmark",
+#                               year = 2009,
+#                               nIter = nIter
+#                               )
+
+hInd2009OstGress <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2009,
+                              nIter = nIter
+                              )
+hInd2009OstSkog <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2009,
+                              nIter = nIter
+                              )
+# hInd2009SorGress <- calcInd(type = "bumblebees",
+#                               region_short = "sor",
+#                               habitat = "gressmark",
+#                               year = 2009,
+#                               nIter = nIter
+#                               )
+# hInd2009SorSkog <- calcInd(type = "bumblebees",
+#                               region_short = "sor",
+#                               habitat = "skogsmark",
+#                               year = 2009,
+#                               nIter = nIter
+#                               )
+
+save(hInd2009OstGress, hInd2009OstSkog, file = "out/h2009Ind.Rdata")
+```
+
+```{r, eval = runAll, echo = T}
+
+# hObs2010TrondGress <- getComplData(type = "bumblebees",
+#                                    region_short = "trond",
+#                                    habitat = "gressmark",
+#                                    year = 2010)
+# 
+# hInd2010TrondGress <- calcInd(type = "bumblebees",
+#                               region_short = "trond",
+#                               habitat = "gressmark",
+#                               year = 2010,
+#                               nIter = nIter
+#                               )
+# hObs2010TrondSkog <- getComplData(type = "bumblebees",
+#                                    region_short = "trond",
+#                                    habitat = "skogsmark",
+#                                    year = 2010)
+# hInd2010TrondSkog <- calcInd(type = "bumblebees",
+#                               region_short = "trond",
+#                               habitat = "skogsmark",
+#                               year = 2010,
+#                               nIter = nIter
+#                               )
+
+hInd2010OstGress <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2010,
+                              nIter = nIter
+                              )
+hInd2010OstSkog <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2010,
+                              nIter = nIter
+                              )
+# hInd2010SorGress <- calcInd(type = "bumblebees",
+#                               region_short = "sor",
+#                               habitat = "gressmark",
+#                               year = 2010,
+#                               nIter = nIter
+#                               )
+# hInd2010SorSkog <- calcInd(type = "bumblebees",
+#                               region_short = "sor",
+#                               habitat = "skogsmark",
+#                               year = 2010,
+#                               nIter = nIter
+#                               )
+
+save(hInd2010OstGress, hInd2010OstSkog, file = "out/h2010Ind.Rdata")
+```
+
+
+```{r, eval = runAll, echo = T}
+
+# hObs2011rondGress <- getComplData(type = "bumblebees",
+#                                    region_short = "trond",
+#                                    habitat = "gressmark",
+#                                    year = 2011)
+# 
+# hInd2011TrondGress <- calcInd(type = "bumblebees",
+#                               region_short = "trond",
+#                               habitat = "gressmark",
+#                               year = 2011,
+#                               nIter = nIter
+#                               )
+#        
+# hInd2011TrondSkog <- calcInd(type = "bumblebees",
+#                               region_short = "trond",
+#                               habitat = "skogsmark",
+#                               year = 2011,
+#                               nIter = nIter
+#                               )
+
+hInd2011OstGress <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2011,
+                              nIter = nIter
+                              )
+hInd2011OstSkog <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2011,
+                              nIter = nIter
+                              )
+# hInd2011SorGress <- calcInd(type = "bumblebees",
+#                               region_short = "sor",
+#                               habitat = "gressmark",
+#                               year = 2011,
+#                               nIter = nIter
+#                               )
+# hInd2011SorSkog <- calcInd(type = "bumblebees",
+#                               region_short = "sor",
+#                               habitat = "skogsmark",
+#                               year = 2011,
+#                               nIter = nIter
+#                               )
+
+save(hInd2011OstGress, hInd2011OstSkog, file = "out/h2011Ind.Rdata")
+```
+
+```{r, eval = runAll, echo = T}
+
+
+hInd2012TrondGress <- calcInd(type = "bumblebees",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2012,
+                              nIter = nIter
+                              )
+       
+hInd2012TrondSkog <- calcInd(type = "bumblebees",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2012,
+                              nIter = nIter
+                              )
+hInd2012OstGress <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2012,
+                              nIter = nIter
+                              )
+hInd2012OstSkog <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2012,
+                              nIter = nIter
+                              )
+# hInd2012SorGress <- calcInd(type = "bumblebees",
+#                               region_short = "sor",
+#                               habitat = "gressmark",
+#                               year = 2012,
+#                               nIter = nIter
+#                               )
+# hInd2012SorSkog <- calcInd(type = "bumblebees",
+#                               region_short = "sor",
+#                               habitat = "skogsmark",
+#                               year = 2012,
+#                               nIter = nIter
+#                               )
+
+save(hInd2012TrondGress, hInd2012TrondSkog, hInd2012OstGress, hInd2012OstSkog, file = "out/h2012Ind.Rdata")
+```
+
+
+```{r, eval = runAll, echo = T}
+
+hInd2013TrondGress <- calcInd(type = "bumblebees",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2013,
+                              nIter = nIter
+                              )
+       
+hInd2013TrondSkog <- calcInd(type = "bumblebees",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2013,
+                              nIter = nIter
+                              )
+hInd2013OstGress <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2013,
+                              nIter = nIter
+                              )
+hInd2013OstSkog <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2013,
+                              nIter = nIter
+                              )
+hInd2013SorGress <- calcInd(type = "bumblebees",
+                              region_short = "sor",
+                              habitat = "gressmark",
+                              year = 2013,
+                              nIter = nIter
+                              )
+hInd2013SorSkog <- calcInd(type = "bumblebees",
+                              region_short = "sor",
+                              habitat = "skogsmark",
+                              year = 2013,
+                              nIter = nIter
+                              )
+
+save(hInd2013TrondGress, hInd2013TrondSkog, hInd2013OstGress, hInd2013OstSkog, hInd2013SorGress, hInd2013SorSkog, file = "out/h2013Ind.Rdata")
+```
+
+
+```{r, eval = runAll, echo = T}
+
+hInd2014TrondGress <- calcInd(type = "bumblebees",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2014,
+                              nIter = nIter
+                              )
+       
+hInd2014TrondSkog <- calcInd(type = "bumblebees",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2014,
+                              nIter = nIter
+                              )
+hInd2014OstGress <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2014,
+                              nIter = nIter
+                              )
+hInd2014OstSkog <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2014,
+                              nIter = nIter
+                              )
+hInd2014SorGress <- calcInd(type = "bumblebees",
+                              region_short = "sor",
+                              habitat = "gressmark",
+                              year = 2014,
+                              nIter = nIter
+                              )
+hInd2014SorSkog <- calcInd(type = "bumblebees",
+                              region_short = "sor",
+                              habitat = "skogsmark",
+                              year = 2014,
+                              nIter = nIter
+                              )
+
+save(hInd2014TrondGress, hInd2014TrondSkog, hInd2014OstGress, hInd2014OstSkog, hInd2014SorGress, hInd2014SorSkog, file = "out/h2014Ind.Rdata")
+```
+
+```{r, eval = runAll, echo = T}
+
+hInd2015TrondGress <- calcInd(type = "bumblebees",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2015,
+                              nIter = nIter
+                              )
+       
+hInd2015TrondSkog <- calcInd(type = "bumblebees",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2015,
+                              nIter = nIter
+                              )
+hInd2015OstGress <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2015,
+                              nIter = nIter
+                              )
+hInd2015OstSkog <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2015,
+                              nIter = nIter
+                              )
+hInd2015SorGress <- calcInd(type = "bumblebees",
+                              region_short = "sor",
+                              habitat = "gressmark",
+                              year = 2015,
+                              nIter = nIter
+                              )
+hInd2015SorSkog <- calcInd(type = "bumblebees",
+                              region_short = "sor",
+                              habitat = "skogsmark",
+                              year = 2015,
+                              nIter = nIter
+                              )
+
+save(hInd2015TrondGress, hInd2015TrondSkog, hInd2015OstGress, hInd2015OstSkog, hInd2015SorGress, hInd2015SorSkog, file = "out/h2015Ind.Rdata")
+```
+
+
+```{r, eval = runAll, echo = T}
+
+hInd2016TrondGress <- calcInd(type = "bumblebees",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2016,
+                              nIter = nIter
+                              )
+       
+hInd2016TrondSkog <- calcInd(type = "bumblebees",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2016,
+                              nIter = nIter
+                              )
+hInd2016OstGress <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2016,
+                              nIter = nIter
+                              )
+hInd2016OstSkog <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2016,
+                              nIter = nIter
+                              )
+hInd2016SorGress <- calcInd(type = "bumblebees",
+                              region_short = "sor",
+                              habitat = "gressmark",
+                              year = 2016,
+                              nIter = nIter
+                              )
+hInd2016SorSkog <- calcInd(type = "bumblebees",
+                              region_short = "sor",
+                              habitat = "skogsmark",
+                              year = 2016,
+                              nIter = nIter
+                              )
+
+save(hInd2016TrondGress, hInd2016TrondSkog, hInd2016OstGress, hInd2016OstSkog, hInd2016SorGress, hInd2016SorSkog, file = "out/h2016Ind.Rdata")
+```
+
+
+```{r, eval = runAll, echo = T}
+
+hInd2017TrondGress <- calcInd(type = "bumblebees",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+       
+hInd2017TrondSkog <- calcInd(type = "bumblebees",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+hInd2017OstGress <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+hInd2017OstSkog <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+hInd2017SorGress <- calcInd(type = "bumblebees",
+                              region_short = "sor",
+                              habitat = "gressmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+hInd2017SorSkog <- calcInd(type = "bumblebees",
+                              region_short = "sor",
+                              habitat = "skogsmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+
+save(hInd2017TrondGress, hInd2017TrondSkog, hInd2017OstGress, hInd2017OstSkog, hInd2017SorGress, hInd2017SorSkog, file = "out/h2017Ind.Rdata")
+```
+
+```{r, eval = runAll, echo = T}
+
+hInd2018TrondGress <- calcInd(type = "bumblebees",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2018,
+                              nIter = nIter
+                              )
+       
+hInd2018TrondSkog <- calcInd(type = "bumblebees",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2018,
+                              nIter = nIter
+                              )
+hInd2018OstGress <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2018,
+                              nIter = nIter
+                              )
+hInd2018OstSkog <- calcInd(type = "bumblebees",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2018,
+                              nIter = nIter
+                              )
+hInd2018SorGress <- calcInd(type = "bumblebees",
+                              region_short = "sor",
+                              habitat = "gressmark",
+                              year = 2018,
+                              nIter = nIter
+                              )
+hInd2018SorSkog <- calcInd(type = "bumblebees",
+                              region_short = "sor",
+                              habitat = "skogsmark",
+                              year = 2018,
+                              nIter = nIter
+                              )
+
+save(hInd2018TrondGress, hInd2018TrondSkog, hInd2018OstGress, hInd2018OstSkog, hInd2018SorGress, hInd2018SorSkog, file = "out/h2018Ind.Rdata")
+```
+Butterflies
+---------
+```{r, eval = runAll, echo = T}
+
+# hObs2009TrondGress <- getComplData(type = "butterflies",
+#                                    region_short = "trond",
+#                                    habitat = "gressmark",
+#                                    year = 2009)
+# 
+# sInd2009TrondGress <- calcInd(type = "butterflies",
+#                               region_short = "trond",
+#                               habitat = "gressmark",
+#                               year = 2009,
+#                               nIter = nIter
+#                               )
+# 
+# sInd2009TrondSkog <- calcInd(type = "butterflies",
+#                               region_short = "trond",
+#                               habitat = "skogsmark",
+#                               year = 2009,
+#                               nIter = nIter
+#                               )
+
+sInd2009OstGress <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2009,
+                              nIter = nIter
+                              )
+sInd2009OstSkog <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2009,
+                              nIter = nIter
+                              )
+# sInd2009SorGress <- calcInd(type = "butterflies",
+#                               region_short = "sor",
+#                               habitat = "gressmark",
+#                               year = 2009,
+#                               nIter = nIter
+#                               )
+# sInd2009SorSkog <- calcInd(type = "butterflies",
+#                               region_short = "sor",
+#                               habitat = "skogsmark",
+#                               year = 2009,
+#                               nIter = nIter
+#                               )
+
+save(sInd2009OstGress, sInd2009OstSkog, file = "out/s2009Ind.Rdata")
+```
+
+```{r, eval = runAll, echo = T}
+
+# sObs2010TrondGress <- getComplData(type = "butterflies",
+#                               region_short = "trond",
+#                               habitat = "gressmark",
+#                               year = 2010)
+# 
+# sInd2010TrondGress <- calcInd(type = "butterflies",
+#                               region_short = "trond",
+#                               habitat = "gressmark",
+#                               year = 2010,
+#                               nIter = nIter
+#                               )
+# 
+# sObs2010TrondSkog <- getComplData(type = "butterflies",
+#                               region_short = "trond",
+#                               habitat = "skogsmark",
+#                               year = 2010)
+# 
+# sInd2010TrondSkog <- calcInd(type = "butterflies",
+#                               region_short = "trond",
+#                               habitat = "skogsmark",
+#                               year = 2010,
+#                               nIter = nIter
+#                               )
+
+sInd2010OstGress <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2010,
+                              nIter = nIter
+                              )
+sInd2010OstSkog <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2010,
+                              nIter = nIter
+                              )
+# sInd2010SorGress <- calcInd(type = "butterflies",
+#                               region_short = "sor",
+#                               habitat = "gressmark",
+#                               year = 2010,
+#                               nIter = nIter
+#                               )
+# sInd2010SorSkog <- calcInd(type = "butterflies",
+#                               region_short = "sor",
+#                               habitat = "skogsmark",
+#                               year = 2010,
+#                               nIter = nIter
+#                               )
+
+save(sInd2010OstGress, sInd2010OstSkog, file = "out/s2010Ind.Rdata")
+```
+
+
+```{r, eval = runAll, echo = T}
+
+# hObs2011rondGress <- getComplData(type = "butterflies",
+#                                    region_short = "trond",
+#                                    habitat = "gressmark",
+#                                    year = 2011)
+# 
+# sInd2011TrondGress <- calcInd(type = "butterflies",
+#                               region_short = "trond",
+#                               habitat = "gressmark",
+#                               year = 2011,
+#                               nIter = nIter
+#                               )
+#        
+# sInd2011TrondSkog <- calcInd(type = "butterflies",
+#                               region_short = "trond",
+#                               habitat = "skogsmark",
+#                               year = 2011,
+#                               nIter = nIter
+#                               )
+
+sInd2011OstGress <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2011,
+                              nIter = nIter
+                              )
+sInd2011OstSkog <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2011,
+                              nIter = nIter
+                              )
+# sInd2011SorGress <- calcInd(type = "butterflies",
+#                               region_short = "sor",
+#                               habitat = "gressmark",
+#                               year = 2011,
+#                               nIter = nIter
+#                               )
+# sInd2011SorSkog <- calcInd(type = "butterflies",
+#                               region_short = "sor",
+#                               habitat = "skogsmark",
+#                               year = 2011,
+#                               nIter = nIter
+#                               )
+
+save(sInd2011OstGress, sInd2011OstSkog, file = "out/s2011Ind.Rdata")
+```
+
+```{r, eval = runAll, echo = T}
+
+
+sInd2012TrondGress <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2012,
+                              nIter = nIter
+                              )
+       
+sInd2012TrondSkog <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2012,
+                              nIter = nIter
+                              )
+sInd2012OstGress <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2012,
+                              nIter = nIter
+                              )
+sInd2012OstSkog <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2012,
+                              nIter = nIter
+                              )
+# sInd2012SorGress <- calcInd(type = "butterflies",
+#                               region_short = "sor",
+#                               habitat = "gressmark",
+#                               year = 2012,
+#                               nIter = nIter
+#                               )
+# sInd2012SorSkog <- calcInd(type = "butterflies",
+#                               region_short = "sor",
+#                               habitat = "skogsmark",
+#                               year = 2012,
+#                               nIter = nIter
+#                               )
+
+save(sInd2012TrondGress, sInd2012TrondSkog, sInd2012OstGress, sInd2012OstSkog, file = "out/s2012Ind.Rdata")
+```
+
+
+```{r, eval = runAll, echo = T}
+
+sInd2013TrondGress <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2013,
+                              nIter = nIter
+                              )
+       
+sInd2013TrondSkog <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2013,
+                              nIter = nIter
+                              )
+sInd2013OstGress <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2013,
+                              nIter = nIter
+                              )
+sInd2013OstSkog <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2013,
+                              nIter = nIter
+                              )
+sInd2013SorGress <- calcInd(type = "butterflies",
+                              region_short = "sor",
+                              habitat = "gressmark",
+                              year = 2013,
+                              nIter = nIter
+                              )
+sInd2013SorSkog <- calcInd(type = "butterflies",
+                              region_short = "sor",
+                              habitat = "skogsmark",
+                              year = 2013,
+                              nIter = nIter
+                              )
+
+save(sInd2013TrondGress, sInd2013TrondSkog, sInd2013OstGress, sInd2013OstSkog, sInd2013SorGress, sInd2013SorSkog, file = "out/s2013Ind.Rdata")
+```
+
+
+```{r, eval = runAll, echo = T}
+
+sInd2014TrondGress <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2014,
+                              nIter = nIter
+                              )
+       
+sInd2014TrondSkog <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2014,
+                              nIter = nIter
+                              )
+sInd2014OstGress <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2014,
+                              nIter = nIter
+                              )
+sInd2014OstSkog <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2014,
+                              nIter = nIter
+                              )
+sInd2014SorGress <- calcInd(type = "butterflies",
+                              region_short = "sor",
+                              habitat = "gressmark",
+                              year = 2014,
+                              nIter = nIter
+                              )
+sInd2014SorSkog <- calcInd(type = "butterflies",
+                              region_short = "sor",
+                              habitat = "skogsmark",
+                              year = 2014,
+                              nIter = nIter
+                              )
+
+save(sInd2014TrondGress, sInd2014TrondSkog, sInd2014OstGress, sInd2014OstSkog, sInd2014SorGress, sInd2014SorSkog, file = "out/s2014Ind.Rdata")
+```
+
+```{r, eval = runAll, echo = T}
+
+sInd2015TrondGress <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2015,
+                              nIter = nIter
+                              )
+       
+sInd2015TrondSkog <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2015,
+                              nIter = nIter
+                              )
+sInd2015OstGress <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2015,
+                              nIter = nIter
+                              )
+sInd2015OstSkog <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2015,
+                              nIter = nIter
+                              )
+sInd2015SorGress <- calcInd(type = "butterflies",
+                              region_short = "sor",
+                              habitat = "gressmark",
+                              year = 2015,
+                              nIter = nIter
+                              )
+sInd2015SorSkog <- calcInd(type = "butterflies",
+                              region_short = "sor",
+                              habitat = "skogsmark",
+                              year = 2015,
+                              nIter = nIter
+                              )
+
+save(sInd2015TrondGress, sInd2015TrondSkog, sInd2015OstGress, sInd2015OstSkog, sInd2015SorGress, sInd2015SorSkog, file = "out/s2015Ind.Rdata")
+```
+
+
+```{r, eval = runAll, echo = T}
+
+sInd2016TrondGress <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2016,
+                              nIter = nIter
+                              )
+       
+sInd2016TrondSkog <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2016,
+                              nIter = nIter
+                              )
+sInd2016OstGress <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2016,
+                              nIter = nIter
+                              )
+sInd2016OstSkog <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2016,
+                              nIter = nIter
+                              )
+sInd2016SorGress <- calcInd(type = "butterflies",
+                              region_short = "sor",
+                              habitat = "gressmark",
+                              year = 2016,
+                              nIter = nIter
+                              )
+sInd2016SorSkog <- calcInd(type = "butterflies",
+                              region_short = "sor",
+                              habitat = "skogsmark",
+                              year = 2016,
+                              nIter = nIter
+                              )
+
+save(sInd2016TrondGress, sInd2016TrondSkog, sInd2016OstGress, sInd2016OstSkog, sInd2016SorGress, sInd2016SorSkog, file = "out/s2016Ind.Rdata")
+```
+
+
+```{r, eval = runAll, echo = T}
+
+sInd2017TrondGress <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+       
+sInd2017TrondSkog <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+sInd2017OstGress <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+sInd2017OstSkog <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+sInd2017SorGress <- calcInd(type = "butterflies",
+                              region_short = "sor",
+                              habitat = "gressmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+sInd2017SorSkog <- calcInd(type = "butterflies",
+                              region_short = "sor",
+                              habitat = "skogsmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+
+save(sInd2017TrondGress, sInd2017TrondSkog, sInd2017OstGress, sInd2017OstSkog, sInd2017SorGress, sInd2017SorSkog, file = "out/s2017Ind.Rdata")
+```
+
+```{r, eval = runAll, echo = T}
+
+sInd2018TrondGress <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2018,
+                              nIter = nIter
+                              )
+       
+sInd2018TrondSkog <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2018,
+                              nIter = nIter
+                              )
+sInd2018OstGress <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2018,
+                              nIter = nIter
+                              )
+sInd2018OstSkog <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2018,
+                              nIter = nIter
+                              )
+sInd2018SorGress <- calcInd(type = "butterflies",
+                              region_short = "sor",
+                              habitat = "gressmark",
+                              year = 2018,
+                              nIter = nIter
+                              )
+sInd2018SorSkog <- calcInd(type = "butterflies",
+                              region_short = "sor",
+                              habitat = "skogsmark",
+                              year = 2018,
+                              nIter = nIter
+                              )
+
+save(sInd2018TrondGress, sInd2018TrondSkog, sInd2018OstGress, sInd2018OstSkog, sInd2018SorGress, sInd2018SorSkog, file = "out/s2018Ind.Rdata")
+```
+
+
+
+```{r, eval = runAll, echo = T}
+
+
+sInd2017TrondGress <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "gressmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+       
+sInd2017TrondSkog <- calcInd(type = "butterflies",
+                              region_short = "trond",
+                              habitat = "skogsmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+sInd2017OstGress <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "gressmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+sInd2017OstSkog <- calcInd(type = "butterflies",
+                              region_short = "ost",
+                              habitat = "skogsmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+sInd2017SorGress <- calcInd(type = "butterflies",
+                              region_short = "sor",
+                              habitat = "gressmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+sInd2017SorSkog <- calcInd(type = "butterflies",
+                              region_short = "sor",
+                              habitat = "skogsmark",
+                              year = 2017,
+                              nIter = nIter
+                              )
+
+
+save(sInd2017TrondGress, sInd2017TrondSkog, sInd2017OstGress, sInd2017OstSkog, sInd2017SorGress, sInd2017SorSkog, file = "out/s2017Ind.Rdata")
+```
+
+```{r, eval = F}
+use_data(sInd2018TrondGress, sInd2018TrondSkog, sInd2018OstGress, sInd2018OstSkog, sInd2018SorGress, sInd2018SorSkog,
+sInd2017TrondGress, sInd2017TrondSkog, sInd2017OstGress, sInd2017OstSkog, sInd2017SorGress, sInd2017SorSkog,
+sInd2016TrondGress, sInd2016TrondSkog, sInd2016OstGress, sInd2016OstSkog, sInd2016SorGress, sInd2016SorSkog,
+sInd2015TrondGress, sInd2015TrondSkog, sInd2015OstGress, sInd2015OstSkog, sInd2015SorGress, sInd2015SorSkog,
+sInd2014TrondGress, sInd2014TrondSkog, sInd2014OstGress, sInd2014OstSkog, sInd2014SorGress, sInd2014SorSkog,
+sInd2013TrondGress, sInd2013TrondSkog, sInd2013OstGress, sInd2013OstSkog, sInd2013SorGress, sInd2013SorSkog,
+sInd2012TrondGress, sInd2012TrondSkog, sInd2012OstGress, sInd2012OstSkog,
+sInd2011OstGress, sInd2011OstSkog,
+sInd2010OstGress, sInd2010OstSkog,
+sInd2009OstGress, sInd2009OstSkog)
+
+use_data(hInd2018TrondGress, hInd2018TrondSkog, hInd2018OstGress, hInd2018OstSkog, hInd2018SorGress, hInd2018SorSkog,
+hInd2017TrondGress, hInd2017TrondSkog, hInd2017OstGress, hInd2017OstSkog, hInd2017SorGress, hInd2017SorSkog,
+hInd2016TrondGress, hInd2016TrondSkog, hInd2016OstGress, hInd2016OstSkog, hInd2016SorGress, hInd2016SorSkog,
+hInd2015TrondGress, hInd2015TrondSkog, hInd2015OstGress, hInd2015OstSkog, hInd2015SorGress, hInd2015SorSkog,
+hInd2014TrondGress, hInd2014TrondSkog, hInd2014OstGress, hInd2014OstSkog, hInd2014SorGress, hInd2014SorSkog,
+hInd2013TrondGress, hInd2013TrondSkog, hInd2013OstGress, hInd2013OstSkog, hInd2013SorGress, hInd2013SorSkog,
+hInd2012TrondGress, hInd2012TrondSkog, hInd2012OstGress, hInd2012OstSkog,
+hInd2011OstGress, hInd2011OstSkog,
+hInd2010OstGress, hInd2010OstSkog,
+hInd2009OstGress, hInd2009OstSkog)
+```
+
+
+Double check with earlier calculations of bumblebees
+-----------
+
+```{r}
+knitr::opts_chunk$set(eval = runAll, echo = F)
+```
+
+
+```{r}
+load("../../rawdata/indeks_2017.Rdata")
+```
+
+```{r}
+h_2017_trond_gress_ind[1]
+hInd2017TrondGress[1]
+```
+
+```{r}
+h_2017_trond_skog_ind[1]
+hInd2017TrondSkog[1]
+```
+
+
+```{r}
+h_2017_ost_gress_ind[1]
+hInd2017OstGress[1]
+#!!!
+#is correct when calculating 2017 values with the 1808 rute included. 2017 values where wrong.
+```
+
+```{r}
+old2017 <- huml_2011_2017  %>% 
+  as_tibble %>% 
+  filter(Dato >= '2017-01-01',
+         Dato <= '2018-01-01',
+         Flate %in% hObs2017OstGress$Flate,
+         Transekt %in% hObs2017OstGress$Transekt) %>% 
+  arrange(Flate, Dato)
+
+old2017agg <- old2017 %>% 
+  group_by(Flate, Transekt) %>% 
+  summarise_each(~sum(.),
+                -c(Periode, Dato))
+
+old2017agg <- old2017agg[order(colnames(old2017agg))] %>% 
+  select(Flate, Transekt,
+         everything())
+
+colSums(old2017[5:27])
+
+colSums(hObs2017OstGress)
+
+old2017agg %>% 
+  select(-Transekt) %>% 
+  group_by(Flate) %>% 
+  summarise(sum(`B.pascuorum`))
+
+
+hObs2017OstGress %>% 
+  select(-Transekt) %>% 
+  group_by(Flate) %>% 
+  summarise(sum(`Bombus pascuorum`))
+
+
+
+hObs2017OstGress %>% 
+  filter(Flate == 2008) %>% 
+  select(Transekt, `Bombus pascuorum`)
+```
+
+
+```{r}
+h_2017_ost_skog_ind[1]
+hInd2017OstSkog[1]
+```
+
+```{r}
+h_2017_sor_gress_ind[1]
+hInd2017SorGress[1]
+```
+
+```{r}
+h_2017_sor_skog_ind[1]
+hInd2017SorSkog[1]
+```
+
+Double check earlier calculations of butterflies
+-------
+
+
+
+
+```{r}
+s_2017_trond_gress_ind[1]
+sInd2017TrondGress[1]
+```
+
+```{r}
+s_2017_trond_skog_ind[1]
+sInd2017TrondSkog[1]
+```
+
+
+```{r}
+s_2017_ost_gress_ind[1]
+sInd2017OstGress[1]
+with(h_2017_ost_skog, table(Flate))
+with(hObs2017OstSkog, table(Flate))
+#is correct when calculating 2017 values with the 1808 rute included. 2017 values where wrong.
+```
+
+
+```{r}
+s_2017_ost_skog_ind[1]
+sInd2017OstSkog[1]
+with(s_2017_ost_skog, table(Flate))
+with(sObs2017OstSkog, table(Flate))
+##Could be the same reason of missing 1808 flate in 2017 calculations
+```
+
+```{r}
+s_2017_sor_gress_ind[1]
+sInd2017SorGress[1]
+##!!
+with(s_2017_sor_gress, table(Flate))
+with(sObs2017SorGress, table(Flate)) ##Matches
+
+oldSum <- s_2017_sor_gress %>% 
+  select(-c(Flate, Transekt)) %>% 
+  select(noquote(order(colnames(.)))) %>% 
+  colSums()
+
+newSum <- sObs2017SorGress %>% 
+  select(-c(Flate, Transekt)) %>% 
+  select(noquote(order(colnames(.)))) %>% 
+  colSums()
+
+oldSum[!oldSum == newSum] #All match
+
+compareExp <- sExpSorGress %>% 
+  left_join(exp.sf.sor.gress, by = c("species" = "species")) %>% 
+  mutate(amount.y = ifelse(amount.y == "", NA, amount.y))
+#compareExp %>% print(n = Inf)
+all(compareExp$amount.x == compareExp$amount.y, na.rm = T)
+#All seems ok, yet values differ. Step through the function
+
+sInd2017SorGress <- calcInd(obs = sObs2017SorGress,
+        exp = sExpSorGress,
+        a.weight = amount_weights,
+        d.weight = diff_weights,
+        n.iter = 9
+        )
+
+oldTestSorGress <- calcInd(obs = s_2017_sor_gress,
+        exp = exp.sf.sor.gress,
+        a.weight = amount_weights,
+        d.weight = diff_weights,
+        n.iter = 9
+        )
+oldTestSorGress[[1]]
+sInd2017SorGress[[1]]
+
+#comp <- 
+ old<-tibble(species = rownames(oldTestSorGress[[2]]),
+             old = oldTestSorGress[[2]][,1])
+
+  new<-tibble(species = rownames(sInd2017SorGress[[2]]),
+             new = sInd2017SorGress[[2]][,1])
+
+ comp <- old %>% left_join(new)
+comp  %>% print(n = Inf)
+
+
+oldTib <- tibble(species = names(old),
+              old = old)
+newTib <- tibble(species = names(new),
+                 new =new)
+
+comp <- oldTib %>% left_join(newTib)
+comp %>% print(n = Inf)
+
+```
+
+```{r}
+s_2017_sor_skog_ind[1]
+sInd2017SorSkog[1]
+##!!
+```
