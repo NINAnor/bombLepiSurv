@@ -12,8 +12,8 @@
 
 
 
-getAllData <- function(type = "bumblebees",
-                       habitat = "gressmark",
+getAllData <- function(type = NULL,
+                       habitat = NULL,
                        year = 2009:2018,
                        dataConnection = "con",
                        language = "norsk"){

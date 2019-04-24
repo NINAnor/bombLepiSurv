@@ -4,8 +4,8 @@
 \alias{getAllData}
 \title{getAllData}
 \usage{
-getAllData(type = "bumblebees", habitat = "gressmark",
-  year = 2009:2018, dataConnection = "con", language = "norsk")
+getAllData(type = NULL, habitat = NULL, year = 2009:2018,
+  dataConnection = "con", language = "norsk")
 }
 \arguments{
 \item{type}{bumblebees or butterflies}

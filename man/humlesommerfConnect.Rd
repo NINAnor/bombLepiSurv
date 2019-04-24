@@ -4,8 +4,8 @@
 \alias{humlesommerfConnect}
 \title{humlesommerfConnect}
 \usage{
-humlesommerfConnect(username = "postgjest", password = "gjestpost",
-  host = "gisdata-db.nina.no", dbname = "gisdata",
+humlesommerfConnect(username = "humlereader", password = "naturindeks",
+  host = "ninpgsql02.nina.no", dbname = "humlesommerf",
   connectionName = "con", bigint = "integer", ...)
 }
 \description{

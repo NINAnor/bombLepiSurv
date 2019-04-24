@@ -6,7 +6,7 @@
 \usage{
 indPlot(input = NULL, confLevel = "90\%", errorWidth = 0.2,
   lineWidth = 2, ylab = "Indeks", xlab = "År", dodge = 0.1,
-  pointSize = 0.2, errorColour = "black")
+  pointSize = 0.2, errorColour = "black", errorbarAlpha = 0.4)
 }
 \arguments{
 \item{input}{data object, from "collectIndData"}

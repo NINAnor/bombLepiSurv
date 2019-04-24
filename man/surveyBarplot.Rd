@@ -4,7 +4,7 @@
 \alias{surveyBarplot}
 \title{surveyBarplot}
 \usage{
-surveyBarplot(input, ylab = "Art", xlab = "Antall")
+surveyBarplot(input, ylab = "", xlab = "Antall")
 }
 \arguments{
 \item{input}{An input from getAllData}
