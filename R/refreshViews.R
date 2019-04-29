@@ -13,6 +13,10 @@
 
 refreshViews <- function(){
 
+  if(!exists("con")) {
+    warning("No connection!")
+    return(NULL)
+  }
 
   bombus <- "REFRESH MATERIALIZED VIEW views.all_bombus;"
   lepidoptera <- "REFRESH MATERIALIZED VIEW views.all_lepidoptera;"

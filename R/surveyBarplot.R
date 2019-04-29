@@ -21,7 +21,7 @@ surveyBarplot <- function(input,
   agg <- input %>%
     select(-c(Flate, Transekt, Habitattype, Dato, Year, Periode)) %>%
     group_by(Region) %>%
-    summarize_all(list(~sum(.))) %>%
+    summarize_all(list(~sum(., na.rm = T))) %>%
     select_if(function(col) is.character(col) || sum(col) > 0) %>%
     gather(key = "Species", value = "Amount", -Region) %>%
     group_by(Species) %>%
