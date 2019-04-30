@@ -19,7 +19,7 @@ surveyBarplot <- function(input,
 ){
 
   agg <- input %>%
-    select(-c(Flate, Transekt, Habitattype, Dato, Year, Periode)) %>%
+    select(-c(Flate, Transekt, Habitattype, Dato, Year, Periode, Blomsterdekke)) %>%
     group_by(Region) %>%
     summarize_all(list(~sum(., na.rm = T))) %>%
     select_if(function(col) is.character(col) || sum(col) > 0) %>%
