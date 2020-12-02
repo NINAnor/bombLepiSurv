@@ -4,9 +4,11 @@
 \alias{getExpValues}
 \title{getExpValues}
 \usage{
-getExpValues(type = c("bumblebees", "butterflies"),
-  region_short = c("trond", "ost", "sor"), habitat = c("gressmark",
-  "skogsmark"))
+getExpValues(
+  type = c("bumblebees", "butterflies"),
+  region_short = c("trond", "ost", "sor"),
+  habitat = c("gressmark", "skogsmark")
+)
 }
 \description{
 Get expectation communities for the NI indicator calculations from the database.

@@ -4,9 +4,15 @@
 \alias{humlesommerfConnect}
 \title{humlesommerfConnect}
 \usage{
-humlesommerfConnect(username = "humlereader", password = "naturindeks",
-  host = "ninpgsql02.nina.no", dbname = "humlesommerf",
-  connectionName = "con", bigint = "integer", ...)
+humlesommerfConnect(
+  username = "humlereader",
+  password = "naturindeks",
+  host = "ninpgsql02.nina.no",
+  dbname = "humlesommerf",
+  connectionName = "con",
+  bigint = "integer",
+  ...
+)
 }
 \description{
 Connect to the humlesommerf database at ninpgsql02

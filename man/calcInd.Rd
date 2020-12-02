@@ -4,9 +4,19 @@
 \alias{calcInd}
 \title{calcInd}
 \usage{
-calcInd(obs = NULL, exp = NULL, type = NULL, region_short = NULL,
-  habitat = NULL, year = NULL, aWeight = amountWeights,
-  dWeight = diffWeights, nIter = 9, save.draws = T, digits = 7)
+calcInd(
+  obs = NULL,
+  exp = NULL,
+  type = NULL,
+  region_short = NULL,
+  habitat = NULL,
+  year = NULL,
+  aWeight = amountWeights,
+  dWeight = diffWeights,
+  nIter = 9,
+  save.draws = T,
+  digits = 7
+)
 }
 \arguments{
 \item{obs}{Optional. Dataframe or tibble of observation community. Typically gotten from}

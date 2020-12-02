@@ -4,9 +4,13 @@
 \alias{getComplData}
 \title{getComplData}
 \usage{
-getComplData(type = c("bumblebees", "butterflies"),
-  region_short = c("trond", "ost", "sor"), habitat = c("gressmark",
-  "skogsmark"), year = 2010, dataConnection = "con")
+getComplData(
+  type = c("bumblebees", "butterflies"),
+  region_short = c("trond", "ost", "sor"),
+  habitat = c("gressmark", "skogsmark"),
+  year = 2010,
+  dataConnection = "con"
+)
 }
 \arguments{
 \item{type}{What data to get, "bumblebees" or "butterflies"}

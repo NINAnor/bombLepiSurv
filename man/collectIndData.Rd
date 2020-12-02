@@ -4,8 +4,11 @@
 \alias{collectIndData}
 \title{collectIndData}
 \usage{
-collectIndData(taxa = c("bumblebees", "butterflies"),
-  habitat = c("gressmark", "skogsmark"), years = 2009:2018)
+collectIndData(
+  taxa = c("bumblebees", "butterflies"),
+  habitat = c("gressmark", "skogsmark"),
+  years = 2009:2018
+)
 }
 \arguments{
 \item{taxa}{bumblees or butterflies}

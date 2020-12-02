@@ -4,7 +4,9 @@
 \name{sInd2018TrondGress}
 \alias{sInd2018TrondGress}
 \title{Bumblebee and butterfly indicator objects}
-\format{An object of class \code{list} of length 8.}
+\format{
+An object of class \code{list} of length 8.
+}
 \usage{
 sInd2018TrondGress
 }
