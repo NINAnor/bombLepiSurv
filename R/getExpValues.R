@@ -8,23 +8,16 @@
 #' @export
 #'
 #'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
 
 
-getExpValues <- function(type = c("bumblebees", "butterflies"),
-                         region_short = c("trond", "ost", "sor"),
-                         habitat = c("gressmark", "skogsmark")){
+getExpValues <- function(type = c("Humler", "Sommerfugler"),
+                         region_short = c("Trond", "Ost", "Sor"),
+                         habitat = c("Gressmark", "Skogsmark")){
 
-  type_cat <- match.arg(type, c("bumblebees", "butterflies"))
-  region_short_cat <- match.arg(region_short, c("trond", "ost", "sor"))
-  habitat_cat <- match.arg(habitat, c("gressmark", "skogsmark"))
+  #Temporary as long as database has lowecase values. Could update database but prob breaks something else.
+  type_cat <- switch(type,  "Humler" = "bumblebees", "Sommerfugler" = "butterflies")
+  region_short_cat <- switch(region_short, "Trond" = "trond", "Ost" = "ost", "Sor"  = "sor")
+  habitat_cat <- switch(habitat, "Gressmark" = "gressmark","Skogsmark" = "skogsmark")
 
   dataRawQ <- "SELECT n.type, e.*
   FROM species.expectation e LEFT JOIN species.names n
@@ -36,10 +29,10 @@ getExpValues <- function(type = c("bumblebees", "butterflies"),
   out <- dataRaw %>%
     dplyr::select(-id) %>%
     dplyr::filter(type == type_cat,
-           region == region_short_cat,
-           habitat == habitat_cat) %>%
-    dplyr::select(species = species_latin,
-           amount)
+                  region == region_short_cat,
+                  habitat == habitat_cat) %>%
+    dplyr::select(species_latin,
+                  amount)
 
   return(out)
 

@@ -5,9 +5,9 @@
 \title{getExpValues}
 \usage{
 getExpValues(
-  type = c("bumblebees", "butterflies"),
-  region_short = c("trond", "ost", "sor"),
-  habitat = c("gressmark", "skogsmark")
+  type = c("Humler", "Sommerfugler"),
+  region_short = c("Trond", "Ost", "Sor"),
+  habitat = c("Gressmark", "Skogsmark")
 )
 }
 \description{

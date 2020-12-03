@@ -27,5 +27,3 @@ refreshViews <- function(){
 
 }
 
-
-refreshViews()

@@ -4,9 +4,8 @@
 #'
 #'
 #'
-#' @param obs observed community
+#' @param obs observed community (Its species names will be used)
 #' @param exp expected community
-#' @param new.names placeholder (fix)
 #'
 #'
 #'
@@ -16,7 +15,6 @@
 
 plotArt <- function(obs,
                     exp,
-                    new.names = NULL,
                     ...) {
 
   sum.obs <- sort(colSums(obs[, 4:length(obs)] > 0), decreasing = T)
@@ -46,7 +44,6 @@ plotArt <- function(obs,
     xlab = "",
     ylab = ""
   )
-
   axis(1, seq(0, max, 0.05), labels = seq(0, max * 100, 5))
   lim <- par("usr")
   rect(
@@ -73,7 +70,6 @@ plotArt <- function(obs,
     col = rgb(0, 255, 0, alpha = 100, maxColorValue = 255),
     border = NA
   )
-
   barplot(
     perc.obs,
     horiz = T,
@@ -82,7 +78,6 @@ plotArt <- function(obs,
     axes = F,
     col = cols,
     add = T,
-    names.arg = new.names$norsk[match(names(perc.obs), new.names$latin)],
     ...
   )
   #abline(v=c(0.01,0.05),lty=2,col="black",lwd=1.5)
