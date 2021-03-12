@@ -42,7 +42,8 @@ plotArt <- function(obs,
     col = cols,
     plot = T,
     xlab = "",
-    ylab = ""
+    ylab = "",
+    ...
   )
   axis(1, seq(0, max, 0.05), labels = seq(0, max * 100, 5))
   lim <- par("usr")
