@@ -11,8 +11,8 @@ calcInd(
   region_short = NULL,
   habitat = NULL,
   year = NULL,
-  aWeight = amountWeights,
-  dWeight = diffWeights,
+  aWeight = getAmountWeights(),
+  dWeight = getDiffWeights(),
   nIter = 9,
   save.draws = T,
   digits = 7

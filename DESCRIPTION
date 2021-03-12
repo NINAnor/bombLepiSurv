@@ -1,6 +1,6 @@
 Package: bombLepiSurv
 Title: Calculate Nature Index Indicator Values For The Norwegian Bumblebee And Butterfly Surveys
-Version: 0.0.0.9004
+Version: 0.0.0.9005
 Authors@R: 
     person(given = "Jens",
            family = "Åström",
@@ -12,11 +12,12 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 Depends:
-  dplyr,
-  DBI,
-  RPostgres,
-  tidyr,
-  tibble
+    dplyr,
+    DBI,
+    RPostgres,
+    tidyr,
+    tibble,
+    R (>= 2.10)
 Imports:
   dplyr
 Suggests: 

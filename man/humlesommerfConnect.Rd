@@ -5,9 +5,9 @@
 \title{humlesommerfConnect}
 \usage{
 humlesommerfConnect(
-  username = "humlereader",
-  password = "naturindeks",
-  host = "ninpgsql02.nina.no",
+  username = NULL,
+  password = NULL,
+  host = "ninradardata01.nina.no",
   dbname = "humlesommerf",
   connectionName = "con",
   bigint = "integer",
@@ -15,5 +15,5 @@ humlesommerfConnect(
 )
 }
 \description{
-Connect to the humlesommerf database at ninpgsql02
+Connect to the humlesommerf database at ninradardata01
 }

@@ -1,6 +1,6 @@
 #' humlesommerfConnect
 #'
-#' Connect to the humlesommerf database at ninpgsql02
+#' Connect to the humlesommerf database at ninradardata01
 #'
 #'
 #'
@@ -10,13 +10,14 @@
 #'
 
 
-humlesommerfConnect <- function(username = "humlereader",
-         password = "naturindeks",
-         host = "ninpgsql02.nina.no",
-         dbname = "humlesommerf",
-         connectionName = "con",
-         bigint = "integer",
-         ...){
+humlesommerfConnect <- function(
+  username = NULL,
+  password = NULL,
+  host = "ninradardata01.nina.no",
+  dbname = "humlesommerf",
+  connectionName = "con",
+  bigint = "integer",
+  ...){
 
   tmp <- DBI::dbConnect(RPostgres::Postgres(),
                         host = host,

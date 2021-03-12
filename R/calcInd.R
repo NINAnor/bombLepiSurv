@@ -28,8 +28,8 @@ calcInd <- function(obs = NULL,
                     region_short = NULL,
                     habitat = NULL,
                     year = NULL,
-                    aWeight = amountWeights,
-                    dWeight = diffWeights,
+                    aWeight = getAmountWeights(),
+                    dWeight = getDiffWeights(),
                     nIter=9,
                     save.draws=T,
                     digits=7){
@@ -58,15 +58,15 @@ calcInd <- function(obs = NULL,
 
   #missing <- exp$species[!(exp$species %in% colnames(obs))]
   missing <- exp %>%
-    filter(!(species %in% colnames(obs))) %>%
-    select(species)
+    filter(!(species_latin %in% colnames(obs))) %>%
+    select(species_latin)
 
 
   miss.add <- matrix(0,
                      nrow=nrow(obs),
                      ncol=nrow(missing),
                      dimnames=list(1:nrow(obs),
-                                   missing$species))
+                                   missing$species_latin))
   obs <- cbind(obs, miss.add)
 
   ##Check which observed species are not in the expected communities
@@ -76,7 +76,7 @@ calcInd <- function(obs = NULL,
     select(which(colSums(.)>0))
 
   not_in_ref_comm <- not_zeroes %>%
-    select(which(!(colnames(not_zeroes) %in% exp$species))) %>%
+    select(which(!(colnames(not_zeroes) %in% exp$species_latin))) %>%
     colnames()
 
   ##Calculate the point estimate
@@ -90,9 +90,9 @@ calcInd <- function(obs = NULL,
   #sum.obs<-sum.obs[sum.obs>0] ## Loose the zeroes
   perc.obs<-sum.obs/nrow(obs)
 
-  n_v<-perc.obs[names(perc.obs) %in% exp$species[exp$amount=="v"]]
-  n_m<-perc.obs[names(perc.obs) %in% exp$species[exp$amount=="m"]]
-  n_s<-perc.obs[names(perc.obs) %in% exp$species[exp$amount=="s"]]
+  n_v<-perc.obs[names(perc.obs) %in% exp$species_latin[exp$amount=="v"]]
+  n_m<-perc.obs[names(perc.obs) %in% exp$species_latin[exp$amount=="m"]]
+  n_s<-perc.obs[names(perc.obs) %in% exp$species_latin[exp$amount=="s"]]
 
   n_vcopy<-n_v
   n_mcopy<-n_m
@@ -138,7 +138,7 @@ calcInd <- function(obs = NULL,
   s.val<-s.miss*aWeight[[3]]/RT
 
   tt<-c(v.val,m.val,s.val)
-  point.est.species<-tt[match(exp$species,names(tt))]
+  point.est.species<-tt[match(exp$species_latin,names(tt))]
 
   point.est.ind<-sum(point.est.species)   ##Does work! Wohoo!
 
@@ -148,7 +148,7 @@ calcInd <- function(obs = NULL,
       ##Perform the randomizations
 
       if(!is.null(nIter) & nIter >= 0){
-        Spec.ind<-matrix(nrow=nrow(exp),ncol=nIter,dimnames=list(exp$species,1:nIter))
+        Spec.ind<-matrix(nrow=nrow(exp),ncol=nIter,dimnames=list(exp$species_latin,1:nIter))
         SI.ind<-numeric()
         SI<-numeric()
         FL<-unique(obs$Flate)
@@ -170,9 +170,9 @@ calcInd <- function(obs = NULL,
           #sum.obs<-sum.obs[sum.obs>0] ## Loose the zeroes
           perc.obs<-sum.obs/nrow(i.obs)
 
-          n_v<-perc.obs[names(perc.obs) %in% exp$species[exp$amount=="v"]]
-          n_m<-perc.obs[names(perc.obs) %in% exp$species[exp$amount=="m"]]
-          n_s<-perc.obs[names(perc.obs) %in% exp$species[exp$amount=="s"]]
+          n_v<-perc.obs[names(perc.obs) %in% exp$species_latin[exp$amount=="v"]]
+          n_m<-perc.obs[names(perc.obs) %in% exp$species_latin[exp$amount=="m"]]
+          n_s<-perc.obs[names(perc.obs) %in% exp$species_latin[exp$amount=="s"]]
 
           n_vcopy<-n_v
           n_mcopy<-n_m
@@ -216,7 +216,7 @@ calcInd <- function(obs = NULL,
 
           tt<-c(v.val,m.val,s.val)
 
-          Spec.ind[,i]<-tt[match(exp$species,names(tt))]
+          Spec.ind[,i]<-tt[match(exp$species_latin,names(tt))]
           SI.ind[i]<-sum(v.val,m.val,s.val)
           SI[i]<-(RT-ET)/RT
 

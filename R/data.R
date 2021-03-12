@@ -3,6 +3,14 @@
 #' All indicies from 2009 to 2018 based on 9999 bootstraps
 #'
 #'
+#'
+
+"sInd2019TrondGress"
+"sInd2019TrondSkog"
+"sInd2019OstGress"
+"sInd2019OstSkog"
+"sInd2019SorGress"
+"sInd2019SorSkog"
 "sInd2018TrondGress"
 "sInd2018TrondSkog"
 "sInd2018OstGress"
@@ -49,6 +57,12 @@
 "sInd2010OstSkog"
 "sInd2009OstGress"
 "sInd2009OstSkog"
+"hInd2019TrondGress"
+"hInd2019TrondSkog"
+"hInd2019OstGress"
+"hInd2019OstSkog"
+"hInd2019SorGress"
+"hInd2019SorSkog"
 "hInd2018TrondGress"
 "hInd2018TrondSkog"
 "hInd2018OstGress"
