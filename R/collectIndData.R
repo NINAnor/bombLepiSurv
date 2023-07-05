@@ -29,7 +29,7 @@ collectIndData <- function(taxa = c("bumblebees", "butterflies"),
                     "skogsmark" = "Skog")
 
 
-  comb <- expand.grid(taxa, "Ind", years, c("Ost", "Sor", "Trond"), habitat)
+  comb <- expand.grid(taxa, "Ind", years, c("Ost", "Sor", "Trond", "Vest"), habitat)
 
   toLoad <- apply(comb, 1, paste0, collapse = "")
   #remove stuff not in environment
@@ -47,7 +47,8 @@ collectIndData <- function(taxa = c("bumblebees", "butterflies"),
     mutate(Region = as.character(Region)) %>%
     mutate(Region = ifelse(Region == "Ost", "Øst", Region)) %>%
     mutate(Region = ifelse(Region == "Sor", "Sør", Region)) %>%
-    mutate(Region = ifelse(Region == "Trond", "Trøndelag", Region))
+    mutate(Region = ifelse(Region == "Trond", "Trøndelag", Region)) %>%
+    mutate(Region = ifelse(Region == "Vest", "Vestlandet", Region))
 
   return(valFrame)
 
