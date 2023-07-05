@@ -11,7 +11,7 @@
 
 
 getExpValues <- function(type = c("Humler", "Sommerfugler"),
-                         region_short = c("Trond", "Ost", "Sor"),
+                         region_short = c("Trond", "Ost", "Sor", "Vest"),
                          habitat = c("Gressmark", "Skogsmark")){
 
   type <- match.arg(type)
@@ -19,7 +19,7 @@ getExpValues <- function(type = c("Humler", "Sommerfugler"),
   habitat <- match.arg(habitat)
   #Temporary as long as database has lowecase values. Could update database but prob breaks something else.
   type_cat <- switch(type,  "Humler" = "bumblebees", "Sommerfugler" = "butterflies")
-  region_short_cat <- switch(region_short, "Trond" = "trond", "Ost" = "ost", "Sor"  = "sor")
+  region_short_cat <- switch(region_short, "Trond" = "trond", "Ost" = "ost", "Sor"  = "sor", "Vest" = "vest")
   habitat_cat <- switch(habitat, "Gressmark" = "gressmark","Skogsmark" = "skogsmark")
 
   dataRawQ <- "SELECT n.type, e.*

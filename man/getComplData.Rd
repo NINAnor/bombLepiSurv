@@ -6,7 +6,7 @@
 \usage{
 getComplData(
   type = c("Humler", "Sommerfugler"),
-  region_short = c("Trond", "Ost", "Sor"),
+  region_short = c("Trond", "Ost", "Sor", "Vest"),
   habitat = c("Gressmark", "Skogsmark"),
   year = 2010,
   dataConnection = "con"
