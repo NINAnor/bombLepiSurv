@@ -25,7 +25,7 @@ calcInd(
 
 \item{type}{Needed if obs and exp not provided. Type of taxa (bumblebees, butterflies)}
 
-\item{region_short}{Needed if obs and exp not provided. Shortname of region (sor, trond, ost).}
+\item{region_short}{Needed if obs and exp not provided. Shortname of region (sor, trond, ost, vest).}
 
 \item{habitat}{Needed if obs and exp not provided. Type of habitat (skogsmark, gressmark).}
 

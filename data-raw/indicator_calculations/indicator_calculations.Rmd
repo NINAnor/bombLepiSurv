@@ -505,6 +505,216 @@ hInd2018SorSkog <- calcInd(type = "bumblebees",
 
 save(hInd2018TrondGress, hInd2018TrondSkog, hInd2018OstGress, hInd2018OstSkog, hInd2018SorGress, hInd2018SorSkog, file = "out/h2018Ind.Rdata")
 ```
+
+```{r, eval = runAll, echo = T}
+
+
+hInd2019TrondGress <- calcInd(type = "Humler",
+                              region_short = "Trond",
+                              habitat = "Gressmark",
+                              year = 2019,
+                              nIter = nIter
+                              )
+       
+hInd2019TrondSkog <- calcInd(type = "Humler",
+                              region_short = "Trond",
+                              habitat = "Skogsmark",
+                              year = 2019,
+                              nIter = nIter
+                              )
+hInd2019OstGress <- calcInd(type = "Humler",
+                              region_short = "Ost",
+                              habitat = "Gressmark",
+                              year = 2019,
+                              nIter = nIter
+                              )
+hInd2019OstSkog <- calcInd(type = "Humler",
+                              region_short = "Ost",
+                              habitat = "Skogsmark",
+                              year = 2019,
+                              nIter = nIter
+                              )
+hInd2019SorGress <- calcInd(type = "Humler",
+                              region_short = "Sor",
+                              habitat = "Gressmark",
+                              year = 2019,
+                              nIter = nIter
+                              )
+hInd2019SorSkog <- calcInd(type = "Humler",
+                              region_short = "Sor",
+                              habitat = "Skogsmark",
+                              year = 2019,
+                              nIter = nIter
+                              )
+
+
+save(hInd2019TrondGress, hInd2019TrondSkog, hInd2019OstGress, hInd2019OstSkog, hInd2019SorGress, hInd2019SorSkog, file = "out/s2019Ind.Rdata")
+```
+
+
+
+```{r, eval = runAll, echo = T}
+
+
+hInd2020TrondGress <- calcInd(type = "Humler",
+                              region_short = "Trond",
+                              habitat = "Gressmark",
+                              year = 2020,
+                              nIter = nIter
+                              )
+       
+hInd2020TrondSkog <- calcInd(type = "Humler",
+                              region_short = "Trond",
+                              habitat = "Skogsmark",
+                              year = 2020,
+                              nIter = nIter
+                              )
+hInd2020OstGress <- calcInd(type = "Humler",
+                              region_short = "Ost",
+                              habitat = "Gressmark",
+                              year = 2020,
+                              nIter = nIter
+                              )
+hInd2020OstSkog <- calcInd(type = "Humler",
+                              region_short = "Ost",
+                              habitat = "Skogsmark",
+                              year = 2020,
+                              nIter = nIter
+                              )
+hInd2020SorGress <- calcInd(type = "Humler",
+                              region_short = "Sor",
+                              habitat = "Gressmark",
+                              year = 2020,
+                              nIter = nIter
+                              )
+hInd2020SorSkog <- calcInd(type = "Humler",
+                              region_short = "Sor",
+                              habitat = "Skogsmark",
+                              year = 2020,
+                              nIter = nIter
+                              )
+
+
+save(hInd2020TrondGress, hInd2020TrondSkog, hInd2020OstGress, hInd2020OstSkog, hInd2020SorGress, hInd2020SorSkog, file = "out/s2020Ind.Rdata")
+```
+
+
+```{r, eval = runAll, echo = T}
+
+
+hInd2021TrondGress <- calcInd(type = "Humler",
+                              region_short = "Trond",
+                              habitat = "Gressmark",
+                              year = 2021,
+                              nIter = nIter
+                              )
+       
+hInd2021TrondSkog <- calcInd(type = "Humler",
+                              region_short = "Trond",
+                              habitat = "Skogsmark",
+                              year = 2021,
+                              nIter = nIter
+                              )
+hInd2021OstGress <- calcInd(type = "Humler",
+                              region_short = "Ost",
+                              habitat = "Gressmark",
+                              year = 2021,
+                              nIter = nIter
+                              )
+hInd2021OstSkog <- calcInd(type = "Humler",
+                              region_short = "Ost",
+                              habitat = "Skogsmark",
+                              year = 2021,
+                              nIter = nIter
+                              )
+hInd2021SorGress <- calcInd(type = "Humler",
+                              region_short = "Sor",
+                              habitat = "Gressmark",
+                              year = 2021,
+                              nIter = nIter
+                              )
+hInd2021SorSkog <- calcInd(type = "Humler",
+                              region_short = "Sor",
+                              habitat = "Skogsmark",
+                              year = 2021,
+                              nIter = nIter
+                              )
+
+
+save(hInd2021TrondGress, hInd2021TrondSkog, hInd2021OstGress, hInd2021OstSkog, hInd2021SorGress, hInd2021SorSkog, file = "out/s2021Ind.Rdata")
+```
+
+
+```{r, eval = runAll, echo = T}
+
+
+hInd2022TrondGress <- calcInd(type = "Humler",
+                              region_short = "Trond",
+                              habitat = "Gressmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+       
+hInd2022TrondSkog <- calcInd(type = "Humler",
+                              region_short = "Trond",
+                              habitat = "Skogsmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+hInd2022OstGress <- calcInd(type = "Humler",
+                              region_short = "Ost",
+                              habitat = "Gressmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+hInd2022OstSkog <- calcInd(type = "Humler",
+                              region_short = "Ost",
+                              habitat = "Skogsmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+hInd2022SorGress <- calcInd(type = "Humler",
+                              region_short = "Sor",
+                              habitat = "Gressmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+hInd2022SorSkog <- calcInd(type = "Humler",
+                              region_short = "Sor",
+                              habitat = "Skogsmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+
+hInd2022VestGress <- calcInd(type = "Humler",
+                              region_short = "Vest",
+                              habitat = "Gressmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+hInd2022VestSkog <- calcInd(type = "Humler",
+                              region_short = "Vest",
+                              habitat = "Skogsmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+
+
+save(hInd2022TrondGress, hInd2022TrondSkog, hInd2022OstGress, hInd2022OstSkog, hInd2022SorGress, hInd2022SorSkog, hInd2022VestSkog, hInd2022VestSkog, file = "out/h2022Ind.Rdata")
+
+```
+
+```{r, eval = FALSE}
+use_data(hInd2020TrondGress, hInd2020TrondSkog, hInd2020OstGress, hInd2020OstSkog, hInd2020SorGress, hInd2020SorSkog, overwrite = T)
+
+use_data(hInd2021TrondGress, hInd2021TrondSkog, hInd2021OstGress, hInd2021OstSkog, hInd2021SorGress, hInd2021SorSkog, overwrite = T)
+
+use_data(hInd2022TrondGress, hInd2022TrondSkog, hInd2022OstGress, hInd2022OstSkog, hInd2022SorGress, hInd2022SorSkog, hInd2022VestGress, hInd2022VestSkog)
+```
+
+
+
+
 Butterflies
 ---------
 ```{r, eval = runAll, echo = T}
@@ -971,47 +1181,209 @@ save(sInd2018TrondGress, sInd2018TrondSkog, sInd2018OstGress, sInd2018OstSkog, s
 ```{r, eval = runAll, echo = T}
 
 
-sInd2017TrondGress <- calcInd(type = "butterflies",
-                              region_short = "trond",
-                              habitat = "gressmark",
-                              year = 2017,
+sInd2019TrondGress <- calcInd(type = "Sommerfugler",
+                              region_short = "Trond",
+                              habitat = "Gressmark",
+                              year = 2019,
                               nIter = nIter
                               )
        
-sInd2017TrondSkog <- calcInd(type = "butterflies",
-                              region_short = "trond",
-                              habitat = "skogsmark",
-                              year = 2017,
+sInd2019TrondSkog <- calcInd(type = "Sommerfugler",
+                              region_short = "Trond",
+                              habitat = "Skogsmark",
+                              year = 2019,
                               nIter = nIter
                               )
-sInd2017OstGress <- calcInd(type = "butterflies",
-                              region_short = "ost",
-                              habitat = "gressmark",
-                              year = 2017,
+sInd2019OstGress <- calcInd(type = "Sommerfugler",
+                              region_short = "Ost",
+                              habitat = "Gressmark",
+                              year = 2019,
                               nIter = nIter
                               )
-sInd2017OstSkog <- calcInd(type = "butterflies",
-                              region_short = "ost",
-                              habitat = "skogsmark",
-                              year = 2017,
+sInd2019OstSkog <- calcInd(type = "Sommerfugler",
+                              region_short = "Ost",
+                              habitat = "Skogsmark",
+                              year = 2019,
                               nIter = nIter
                               )
-sInd2017SorGress <- calcInd(type = "butterflies",
-                              region_short = "sor",
-                              habitat = "gressmark",
-                              year = 2017,
+sInd2019SorGress <- calcInd(type = "Sommerfugler",
+                              region_short = "Sor",
+                              habitat = "Gressmark",
+                              year = 2019,
                               nIter = nIter
                               )
-sInd2017SorSkog <- calcInd(type = "butterflies",
-                              region_short = "sor",
-                              habitat = "skogsmark",
-                              year = 2017,
+sInd2019SorSkog <- calcInd(type = "Sommerfugler",
+                              region_short = "Sor",
+                              habitat = "Skogsmark",
+                              year = 2019,
                               nIter = nIter
                               )
 
 
-save(sInd2017TrondGress, sInd2017TrondSkog, sInd2017OstGress, sInd2017OstSkog, sInd2017SorGress, sInd2017SorSkog, file = "out/s2017Ind.Rdata")
+save(sInd2019TrondGress, sInd2019TrondSkog, sInd2019OstGress, sInd2019OstSkog, sInd2019SorGress, sInd2019SorSkog, file = "out/s2019Ind.Rdata")
 ```
+
+
+
+```{r, eval = runAll, echo = T}
+
+
+sInd2020TrondGress <- calcInd(type = "Sommerfugler",
+                              region_short = "Trond",
+                              habitat = "Gressmark",
+                              year = 2020,
+                              nIter = nIter
+                              )
+       
+sInd2020TrondSkog <- calcInd(type = "Sommerfugler",
+                              region_short = "Trond",
+                              habitat = "Skogsmark",
+                              year = 2020,
+                              nIter = nIter
+                              )
+sInd2020OstGress <- calcInd(type = "Sommerfugler",
+                              region_short = "Ost",
+                              habitat = "Gressmark",
+                              year = 2020,
+                              nIter = nIter
+                              )
+sInd2020OstSkog <- calcInd(type = "Sommerfugler",
+                              region_short = "Ost",
+                              habitat = "Skogsmark",
+                              year = 2020,
+                              nIter = nIter
+                              )
+sInd2020SorGress <- calcInd(type = "Sommerfugler",
+                              region_short = "Sor",
+                              habitat = "Gressmark",
+                              year = 2020,
+                              nIter = nIter
+                              )
+sInd2020SorSkog <- calcInd(type = "Sommerfugler",
+                              region_short = "Sor",
+                              habitat = "Skogsmark",
+                              year = 2020,
+                              nIter = nIter
+                              )
+
+
+save(sInd2020TrondGress, sInd2020TrondSkog, sInd2020OstGress, sInd2020OstSkog, sInd2020SorGress, sInd2020SorSkog, file = "out/s2020Ind.Rdata")
+```
+
+
+```{r, eval = runAll, echo = T}
+
+
+sInd2021TrondGress <- calcInd(type = "Sommerfugler",
+                              region_short = "Trond",
+                              habitat = "Gressmark",
+                              year = 2021,
+                              nIter = nIter
+                              )
+       
+sInd2021TrondSkog <- calcInd(type = "Sommerfugler",
+                              region_short = "Trond",
+                              habitat = "Skogsmark",
+                              year = 2021,
+                              nIter = nIter
+                              )
+sInd2021OstGress <- calcInd(type = "Sommerfugler",
+                              region_short = "Ost",
+                              habitat = "Gressmark",
+                              year = 2021,
+                              nIter = nIter
+                              )
+sInd2021OstSkog <- calcInd(type = "Sommerfugler",
+                              region_short = "Ost",
+                              habitat = "Skogsmark",
+                              year = 2021,
+                              nIter = nIter
+                              )
+sInd2021SorGress <- calcInd(type = "Sommerfugler",
+                              region_short = "Sor",
+                              habitat = "Gressmark",
+                              year = 2021,
+                              nIter = nIter
+                              )
+sInd2021SorSkog <- calcInd(type = "Sommerfugler",
+                              region_short = "Sor",
+                              habitat = "Skogsmark",
+                              year = 2021,
+                              nIter = nIter
+                              )
+
+
+save(sInd2021TrondGress, sInd2021TrondSkog, sInd2021OstGress, sInd2021OstSkog, sInd2021SorGress, sInd2021SorSkog, file = "out/s2021Ind.Rdata")
+```
+
+
+```{r, eval = runAll, echo = T}
+
+
+sInd2022TrondGress <- calcInd(type = "Sommerfugler",
+                              region_short = "Trond",
+                              habitat = "Gressmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+       
+sInd2022TrondSkog <- calcInd(type = "Sommerfugler",
+                              region_short = "Trond",
+                              habitat = "Skogsmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+sInd2022OstGress <- calcInd(type = "Sommerfugler",
+                              region_short = "Ost",
+                              habitat = "Gressmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+sInd2022OstSkog <- calcInd(type = "Sommerfugler",
+                              region_short = "Ost",
+                              habitat = "Skogsmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+sInd2022SorGress <- calcInd(type = "Sommerfugler",
+                              region_short = "Sor",
+                              habitat = "Gressmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+sInd2022SorSkog <- calcInd(type = "Sommerfugler",
+                              region_short = "Sor",
+                              habitat = "Skogsmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+
+sInd2022VestGress <- calcInd(type = "Sommerfugler",
+                              region_short = "Vest",
+                              habitat = "Gressmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+sInd2022VestSkog <- calcInd(type = "Sommerfugler",
+                              region_short = "Vest",
+                              habitat = "Skogsmark",
+                              year = 2022,
+                              nIter = nIter
+                              )
+
+
+save(sInd2022TrondGress, sInd2022TrondSkog, sInd2022OstGress, sInd2022OstSkog, sInd2022SorGress, sInd2022SorSkog, sInd2022VestSkog, sInd2022VestSkog, file = "out/s2022Ind.Rdata")
+```
+Added just to add 2022 indicator. The other seems to be added manually outside this file. Should make this complete some day from start to finish.
+
+```{r, eval = F}
+
+
+use_data(sInd2022TrondGress, sInd2022TrondSkog, sInd2022OstGress, sInd2022OstSkog, sInd2022SorGress, sInd2022SorSkog, sInd2022VestGress, sInd2022VestSkog)
+```
+
+
+
 
 ```{r, eval = F}
 use_data(sInd2018TrondGress, sInd2018TrondSkog, sInd2018OstGress, sInd2018OstSkog, sInd2018SorGress, sInd2018SorSkog,

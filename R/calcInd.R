@@ -6,7 +6,7 @@
 #' @param obs Optional. Dataframe or tibble of observation community. Typically gotten from
 #' @param exp Optional. Expectation community. Typically gotten from
 #' @param type Needed if obs and exp not provided. Type of taxa (bumblebees, butterflies)
-#' @param region_short Needed if obs and exp not provided. Shortname of region (sor, trond, ost).
+#' @param region_short Needed if obs and exp not provided. Shortname of region (sor, trond, ost, vest).
 #' @param habitat Needed if obs and exp not provided. Type of habitat (skogsmark, gressmark).
 #' @param year Needed if obs not provided. Year of observations.
 #' @param aWeight Named vector of weights for amounts. Relative weights for common, average and rare species. Typically gotten from
@@ -281,6 +281,7 @@ calcInd <- function(obs = NULL,
   else {out<-list("Indicator value"=point.est,"Indicator value, spec"=point.est.species,
                   "Observed species not in reference comunity"=not_in_ref_comm)}
 
+  class(out) <- c("comm_index", class(out))
 
   return(out)
 

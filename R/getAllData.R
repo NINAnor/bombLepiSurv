@@ -51,6 +51,7 @@ getAllData <- function(type = NULL,
     mutate(Region = ifelse(Region == "ost", "Øst", Region)) %>%
     mutate(Region = ifelse(Region == "sor", "Sør", Region)) %>%
     mutate(Region = ifelse(Region == "trond", "Trøndelag", Region)) %>%
+    mutate(Region = ifelse(Region == "vest", "Vest", Region)) %>%
     tidyr::spread(key = language,
                   value = "amount",
                   fill = 0) %>%
