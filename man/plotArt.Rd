@@ -4,12 +4,16 @@
 \alias{plotArt}
 \title{plotArt}
 \usage{
-plotArt(obs, exp, ...)
+plotArt(obs, exp, addZeroes = FALSE, addLegend = FALSE, ...)
 }
 \arguments{
 \item{obs}{observed community (Its species names will be used)}
 
 \item{exp}{expected community}
+
+\item{addZeroes}{Add non-observed species, boolean}
+
+\item{addLegend}{Add legend, boolean}
 }
 \description{
 Plot bumblebee and butterfly occurrences in the shiny app style
