@@ -20,7 +20,7 @@ plotArt <- function(obs,
                     addLegend = FALSE,
                     ...) {
 
-  sum.obs <- sort(colSums(obs[, 4:length(obs)] > 0), decreasing = T)
+  sum.obs <- sort(colSums(obs[, 3:length(obs)] > 0), decreasing = T)
 
   if(!addZeroes){
     sum.obs <- sum.obs[sum.obs > 0]
@@ -51,12 +51,12 @@ plotArt <- function(obs,
     )
 
   scale_fill_bombLepi <- function(){
-    scale_fill_manual(values = c("Ikke forv." = "black",
+    ggplot2::scale_fill_manual(values = c("Ikke forv." = "black",
                                  "Sjelden" = "#E57200",
                                  "Middels v." = "#008C95",
                                  "Vanlig" = "#7A9A01",
                                  "Gjest" = "grey"),
-                      name = "")
+                               name = "")
   }
 
 
@@ -74,30 +74,30 @@ plotArt <- function(obs,
     arrange(perc.obs)
 
  p <- ggplot2::ggplot(plot_data,
-                      aes(y = perc_obs,
+                      ggplot2::aes(y = perc_obs,
                           x = reorder(xaxis_col, desc(perc_obs)),
                           fill = exp)) +
-   coord_flip() +
+   ggplot2::coord_flip() +
    ggplot2::theme_classic() +
    ggplot2::theme(axis.text.y = ggtext::element_markdown()) +
    ggplot2::xlab("") +
    ggplot2::ylab("Prosentvis transektforekomst") +
-   geom_blank()
+   ggplot2::geom_blank()
 
   p <- p +
-    annotate("rect",
+    ggplot2::annotate("rect",
              xmin = 0.5,
              xmax = nrow(plot_data) + 0.5,
              ymin = 0,
              ymax = 1,
              fill = NinaR::addAlpha("#E5720080", 0.5)) +
-    annotate("rect",
+    ggplot2::annotate("rect",
              xmin = 0.5,
              xmax = nrow(plot_data) + 0.5,
              ymin = 1,
              ymax = 5,
              fill = NinaR::addAlpha("#0000FF64", 0.5)) +
-    annotate("rect",
+    ggplot2::annotate("rect",
            xmin = 0.5,
            xmax = nrow(plot_data) + 0.5,
            ymin = 5,
@@ -110,7 +110,7 @@ plotArt <- function(obs,
 
     if(!addLegend){
       p <- p +
-        theme(legend.position = "none")
+        ggplot2::theme(legend.position = "none")
 
     }
 
