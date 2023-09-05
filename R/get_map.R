@@ -14,9 +14,10 @@
 #'
 #' }
 #'
-get_map <- function(region_subset = NULL){
+get_map <- function(dataConnection = "con",
+                                  region_subset = NULL){
 
-  norway_terr <- sf::read_sf(con,
+  norway_terr <- sf::read_sf(get(dataConnection),
                              layer = DBI::Id(schema = "backgrounds", table = "norway_terrestrial")) %>%
     select(fylke = navn)
 
