@@ -15,7 +15,7 @@
 #' }
 #'
 get_map <- function(dataConnection = "con",
-                                  region_subset = NULL){
+                    region_subset = NULL){
 
   norway_terr <- sf::read_sf(get(dataConnection),
                              layer = DBI::Id(schema = "backgrounds", table = "norway_terrestrial")) %>%
