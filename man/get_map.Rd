@@ -5,7 +5,7 @@
 \title{get_map
 Fetch a terrestrial map from the database}
 \usage{
-get_map(region_subset = NULL)
+get_map(dataConnection = "con", region_subset = NULL)
 }
 \arguments{
 \item{region_subset}{optional region(s) to subset}
