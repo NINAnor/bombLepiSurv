@@ -13,10 +13,9 @@
 humlesommerfConnect <- function(
   username = NULL,
   password = NULL,
-  host = "ninradardata01.nina.no",
+  host = "T2lippgsql02.nina.no",
   dbname = "humlesommerf",
   connectionName = "con",
-  bigint = "integer",
   ...){
 
   tmp <- DBI::dbConnect(RPostgres::Postgres(),
@@ -24,7 +23,6 @@ humlesommerfConnect <- function(
                         dbname = dbname,
                         user = username,
                         password = password,
-                        bigint = bigint,
                         ...)
 
   assign(connectionName, tmp, .GlobalEnv)
