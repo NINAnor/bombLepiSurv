@@ -11,9 +11,8 @@
 #'
 #' @export
 
-refreshViews <- function(){
-
-  if(!exists("con")) {
+refreshViews <- function() {
+  if (!exists("con")) {
     warning("No connection!")
     return(NULL)
   }
@@ -23,7 +22,4 @@ refreshViews <- function(){
 
   dbSendQuery(con, bombus)
   dbSendQuery(con, lepidoptera)
-
-
 }
-

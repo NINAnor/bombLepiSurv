@@ -13,17 +13,20 @@
 #'
 
 
-getAmountWeights <- function(){
-
+getAmountWeights <- function() {
   dataRaw <- DBI::dbReadTable(con, Id(schema = "species", table = "amount_weights"))
 
   out <- dataRaw %>%
     dplyr::select(-id) %>%
-    tidyr::spread(key = exp_cat,
-           value = weight) %>%
-    dplyr::select(v,
-           m,
-           s)
+    tidyr::spread(
+      key = exp_cat,
+      value = weight
+    ) %>%
+    dplyr::select(
+      v,
+      m,
+      s
+    )
 
   return(out)
 }

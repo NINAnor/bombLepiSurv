@@ -9,19 +9,22 @@
 #'
 
 
-getDiffWeights <- function(){
-
+getDiffWeights <- function() {
   dataRaw <- DBI::dbReadTable(con, DBI::Id(schema = "species", table = "diff_weights"))
 
-  out <- dataRaw  %>%
+  out <- dataRaw %>%
     dplyr::select(-id) %>%
-    tidyr::spread(key = exp_cat,
-           value = weight) %>%
+    tidyr::spread(
+      key = exp_cat,
+      value = weight
+    ) %>%
     dplyr::arrange(match(obs_cat, c("v", "m", "s", "t"))) %>%
-    `rownames<-`(.[,1]) %>%
-    dplyr::select(v,
-           m,
-           s)
+    `rownames<-`(.[, 1]) %>%
+    dplyr::select(
+      v,
+      m,
+      s
+    )
 
   return(out)
 }

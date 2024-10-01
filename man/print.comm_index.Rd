@@ -20,10 +20,8 @@ print.comm_index Print function for comm_index class
 Bare-bones as of now
 }
 \examples{
-
 \dontrun{
 
 print(sInd2022OstGress)
-
 }
 }

@@ -18,10 +18,7 @@ a ggplot object
 Just an ugly stub at this point
 }
 \examples{
-
 \dontrun{
 plot(sInd2022OstGress)
-
-
 }
 }

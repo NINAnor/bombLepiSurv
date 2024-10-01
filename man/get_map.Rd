@@ -18,11 +18,9 @@ get_map
 Fetch a terrestrial map from the database
 }
 \examples{
-
 \dontrun{
 
 map_from_db <- get_map(region_subset = c("Ost", "Sørlandet"))
-
 }
 
 }
