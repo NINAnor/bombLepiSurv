@@ -8,14 +8,11 @@
 #' @export
 #'
 #' @examples
-#'
 #' \dontrun{
 #'
 #' print(sInd2022OstGress)
-#'
 #' }
 print.comm_index <- function(x,
-                             ...){
+                             ...) {
   print(x[1])
-
 }

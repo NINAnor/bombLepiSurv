@@ -30,16 +30,16 @@ indPlot <- function(input = NULL,
                     dodge = 0.1,
                     pointSize = 0.2,
                     errorColour = "black",
-                    errorbarAlpha = 0.4){
-
+                    errorbarAlpha = 0.4) {
   confLevel <- match.arg(confLevel, c("90%", "95%"))
 
   lower <- switch(confLevel,
-                  "90%" = "lower90",
-                  "95%" = "lower95")
+    "90%" = "lower90",
+    "95%" = "lower95"
+  )
   upper <- switch(confLevel,
-                  "90%" = "upper90",
-                  "95%" = "upper95"
+    "90%" = "upper90",
+    "95%" = "upper95"
   )
 
   pd <- position_dodge(dodge)
@@ -51,26 +51,35 @@ indPlot <- function(input = NULL,
 
   customWidth <- "width"
 
-  g <- ggplot(input, aes(x = Year,
-                         y = Indicator_value,
-                         colour = Region,
-                         group = Region)) +
-    geom_errorbar(aes_string(ymin = lower,
-                             ymax = upper,
-                             width = customWidth),
-                  colour = errorColour,
-                  lwd = lineWidth,
-                  position = pd,
-                  alpha = errorbarAlpha) +
-    geom_line(lwd = lineWidth,
-              position = pd) +
-    geom_point(position = pd,
-               size = pointSize) +
+  g <- ggplot(input, aes(
+    x = Year,
+    y = Indicator_value,
+    colour = Region,
+    group = Region
+  )) +
+    geom_errorbar(
+      aes_string(
+        ymin = lower,
+        ymax = upper,
+        width = customWidth
+      ),
+      colour = errorColour,
+      lwd = lineWidth,
+      position = pd,
+      alpha = errorbarAlpha
+    ) +
+    geom_line(
+      lwd = lineWidth,
+      position = pd
+    ) +
+    geom_point(
+      position = pd,
+      size = pointSize
+    ) +
     ylab(ylab) +
     xlab(xlab)
 
   g <- g + NinaR::scale_color_nina()
 
   g
-
 }

@@ -18,7 +18,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-
 ```
 
 
@@ -41,24 +40,27 @@ Barplots
 =========
 
 ```{r}
-allBombusGressmark2018 <- getAllData(type = "bumblebees",
-                        habitat = "gressmark",
-                        year = 2018,
-                        language = "norsk")
+allBombusGressmark2018 <- getAllData(
+  type = "bumblebees",
+  habitat = "gressmark",
+  year = 2018,
+  language = "norsk"
+)
 
 
 
 
 surveyBarplot(allBombusGressmark2018) +
   ggtitle("Humler i gressmark 2018")
-
 ```
 
 ```{r}
-allBombusSkogsmark2018 <- getAllData(type = "bumblebees",
-                        habitat = "skogsmark",
-                        year = 2018,
-                        language = "norsk")
+allBombusSkogsmark2018 <- getAllData(
+  type = "bumblebees",
+  habitat = "skogsmark",
+  year = 2018,
+  language = "norsk"
+)
 
 surveyBarplot(allBombusSkogsmark2018) +
   ggtitle("Humler i skogsmark 2018")
@@ -66,10 +68,12 @@ surveyBarplot(allBombusSkogsmark2018) +
 
 
 ```{r}
-allLepiSkogsmark2018 <- getAllData(type = "butterflies",
-                        habitat = "skogsmark",
-                        year = 2018,
-                        language = "norsk")
+allLepiSkogsmark2018 <- getAllData(
+  type = "butterflies",
+  habitat = "skogsmark",
+  year = 2018,
+  language = "norsk"
+)
 
 surveyBarplot(allLepiSkogsmark2018) +
   ggtitle("Dagsommerfugler i skogsmark 2018")
@@ -77,10 +81,12 @@ surveyBarplot(allLepiSkogsmark2018) +
 
 
 ```{r}
-allLepiGressmark2018 <- getAllData(type = "butterflies",
-                        habitat = "gressmark",
-                        year = 2018,
-                        language = "norsk")
+allLepiGressmark2018 <- getAllData(
+  type = "butterflies",
+  habitat = "gressmark",
+  year = 2018,
+  language = "norsk"
+)
 
 surveyBarplot(allLepiGressmark2018) +
   ggtitle("Dagsommerfugler i gressmark 2018")
@@ -183,7 +189,6 @@ data("hInd2010OstGress")
 data("hInd2010OstSkog")
 data("hInd2009OstGress")
 data("hInd2009OstSkog")
-
 ```
 
 
@@ -192,12 +197,12 @@ data("hInd2009OstSkog")
 hGressIndVals <- collectIndData(taxa = "bumblebees", habitat = "gressmark")
 
 indPlot(hGressIndVals,
-        confLevel = "95%",
-        lineWidth = 1,
-        dodge = 0.5,
-        pointSize = 4) +
+  confLevel = "95%",
+  lineWidth = 1,
+  dodge = 0.5,
+  pointSize = 4
+) +
   ggtitle("Indikatorverdier for humler i gressmark")
-
 ```
 
 
@@ -205,11 +210,11 @@ indPlot(hGressIndVals,
 hSkogIndVals <- collectIndData(taxa = "bumblebees", habitat = "skogsmark")
 
 indPlot(hSkogIndVals,
-       lineWidth = 1,
-       dodge = 0.5,
-       pointSize = 4)+
+  lineWidth = 1,
+  dodge = 0.5,
+  pointSize = 4
+) +
   ggtitle("Indikatorverdier for humler i skogsmark")
-
 ```
 
 
@@ -218,11 +223,11 @@ indPlot(hSkogIndVals,
 sGressIndVals <- collectIndData(taxa = "butterflies", habitat = "gressmark")
 
 indPlot(sGressIndVals,
-       lineWidth = 1,
-       dodge = 0.5,
-       pointSize = 4)+
+  lineWidth = 1,
+  dodge = 0.5,
+  pointSize = 4
+) +
   ggtitle("Indikatorverdier for dagsommerfugler i gressmark")
-
 ```
 
 
@@ -230,12 +235,12 @@ indPlot(sGressIndVals,
 sSkogIndVals <- collectIndData(taxa = "butterflies", habitat = "skogsmark")
 
 indPlot(sSkogIndVals,
-        confLevel = "95%",
-        lineWidth = 1,
-        dodge = 0.5,
-        pointSize = 4)+
+  confLevel = "95%",
+  lineWidth = 1,
+  dodge = 0.5,
+  pointSize = 4
+) +
   ggtitle("Indikatorverdier for dagsommerfugler i skogsmark")
-
 ```
 
 

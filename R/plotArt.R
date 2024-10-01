@@ -19,102 +19,121 @@ plotArt <- function(obs,
                     addZeroes = FALSE,
                     addLegend = FALSE,
                     ...) {
-
   sum.obs <- sort(colSums(obs[, 3:length(obs)] > 0), decreasing = T)
 
-  if(!addZeroes){
+  if (!addZeroes) {
     sum.obs <- sum.obs[sum.obs > 0]
   }
 
   perc.obs <- sum.obs / nrow(obs)
 
-  colors <- tibble(amount = c(NA,
-                           "s",
-                           "m",
-                           "v",
-                           "g"),
-                   color = c("black",
-                              "#E57200",
-                              "#008C95",
-                              "#7A9A01",
-                              "grey")
+  colors <- tibble(
+    amount = c(
+      NA,
+      "s",
+      "m",
+      "v",
+      "g"
+    ),
+    color = c(
+      "black",
+      "#E57200",
+      "#008C95",
+      "#7A9A01",
+      "grey"
+    )
   )
 
   exp <- exp %>%
     left_join(colors,
-              by = c("amount" = "amount")) %>%
-    mutate(amount = ifelse(is.na(amount), "Ikke forv.", amount),
-           amount = ifelse(amount == "s", "Sjelden", amount),
-           amount = ifelse(amount == "m", "Middels v.", amount),
-           amount = ifelse(amount == "v", "Vanlig", amount),
-           amount = ifelse(amount == "g", "Gjest", amount)
+      by = c("amount" = "amount")
+    ) %>%
+    mutate(
+      amount = ifelse(is.na(amount), "Ikke forv.", amount),
+      amount = ifelse(amount == "s", "Sjelden", amount),
+      amount = ifelse(amount == "m", "Middels v.", amount),
+      amount = ifelse(amount == "v", "Vanlig", amount),
+      amount = ifelse(amount == "g", "Gjest", amount)
     )
 
-  scale_fill_bombLepi <- function(){
-    ggplot2::scale_fill_manual(values = c("Ikke forv." = "black",
-                                 "Sjelden" = "#E57200",
-                                 "Middels v." = "#008C95",
-                                 "Vanlig" = "#7A9A01",
-                                 "Gjest" = "grey"),
-                               name = "")
+  scale_fill_bombLepi <- function() {
+    ggplot2::scale_fill_manual(
+      values = c(
+        "Ikke forv." = "black",
+        "Sjelden" = "#E57200",
+        "Middels v." = "#008C95",
+        "Vanlig" = "#7A9A01",
+        "Gjest" = "grey"
+      ),
+      name = ""
+    )
   }
 
 
 
-  plot_data <- tibble(species_latin = names(perc.obs),
-                      perc_obs = perc.obs) %>%
+  plot_data <- tibble(
+    species_latin = names(perc.obs),
+    perc_obs = perc.obs
+  ) %>%
     left_join(exp,
-              by = c("species_latin" = "species_latin")) %>%
+      by = c("species_latin" = "species_latin")
+    ) %>%
     mutate(perc_obs = perc_obs * 100) %>%
     select(species_latin,
-           perc_obs,
-           exp = amount,
-           color) %>%
+      perc_obs,
+      exp = amount,
+      color
+    ) %>%
     mutate(xaxis_col = glue::glue("<i style='color:{color}'>{species_latin}</i>")) %>%
     arrange(perc.obs)
 
- p <- ggplot2::ggplot(plot_data,
-                      ggplot2::aes(y = perc_obs,
-                          x = reorder(xaxis_col, desc(perc_obs)),
-                          fill = exp)) +
-   ggplot2::coord_flip() +
-   ggplot2::theme_classic() +
-   ggplot2::theme(axis.text.y = ggtext::element_markdown()) +
-   ggplot2::xlab("") +
-   ggplot2::ylab("Prosentvis transektforekomst") +
-   ggplot2::geom_blank()
+  p <- ggplot2::ggplot(
+    plot_data,
+    ggplot2::aes(
+      y = perc_obs,
+      x = reorder(xaxis_col, desc(perc_obs)),
+      fill = exp
+    )
+  ) +
+    ggplot2::coord_flip() +
+    ggplot2::theme_classic() +
+    ggplot2::theme(axis.text.y = ggtext::element_markdown()) +
+    ggplot2::xlab("") +
+    ggplot2::ylab("Prosentvis transektforekomst") +
+    ggplot2::geom_blank()
 
   p <- p +
     ggplot2::annotate("rect",
-             xmin = 0.5,
-             xmax = nrow(plot_data) + 0.5,
-             ymin = 0,
-             ymax = 1,
-             fill = NinaR::addAlpha("#E5720080", 0.5)) +
+      xmin = 0.5,
+      xmax = nrow(plot_data) + 0.5,
+      ymin = 0,
+      ymax = 1,
+      fill = NinaR::addAlpha("#E5720080", 0.5)
+    ) +
     ggplot2::annotate("rect",
-             xmin = 0.5,
-             xmax = nrow(plot_data) + 0.5,
-             ymin = 1,
-             ymax = 5,
-             fill = NinaR::addAlpha("#0000FF64", 0.5)) +
+      xmin = 0.5,
+      xmax = nrow(plot_data) + 0.5,
+      ymin = 1,
+      ymax = 5,
+      fill = NinaR::addAlpha("#0000FF64", 0.5)
+    ) +
     ggplot2::annotate("rect",
-           xmin = 0.5,
-           xmax = nrow(plot_data) + 0.5,
-           ymin = 5,
-           ymax = max(plot_data$perc_obs),
-           fill = NinaR::addAlpha("#00FF0064", 0.5))
+      xmin = 0.5,
+      xmax = nrow(plot_data) + 0.5,
+      ymin = 5,
+      ymax = max(plot_data$perc_obs),
+      fill = NinaR::addAlpha("#00FF0064", 0.5)
+    )
 
-    p <-  p +
-      ggplot2::geom_bar(stat = "identity") +
-      scale_fill_bombLepi()
+  p <- p +
+    ggplot2::geom_bar(stat = "identity") +
+    scale_fill_bombLepi()
 
-    if(!addLegend){
-      p <- p +
-        ggplot2::theme(legend.position = "none")
-
-    }
+  if (!addLegend) {
+    p <- p +
+      ggplot2::theme(legend.position = "none")
+  }
 
 
   return(p)
-
 }
