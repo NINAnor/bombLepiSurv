@@ -1,6 +1,6 @@
 #' Bumblebee and butterfly indicator objects
 #'
-#' All indicies from 2009 to 2018 based on 9999 bootstraps
+#' All indicies from 2009 to 2023 based on 9999 bootstraps
 #'
 #'
 

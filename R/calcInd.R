@@ -5,7 +5,7 @@
 #'
 #' @param obs Optional. Dataframe or tibble of observation community. Typically gotten from
 #' @param exp Optional. Expectation community. Typically gotten from
-#' @param type Needed if obs and exp not provided. Type of taxa (bumblebees, butterflies)
+#' @param type Needed if obs and exp not provided. Type of taxa (Bumblebees, Butterflies)
 #' @param region_short Needed if obs and exp not provided. Shortname of region (sor, trond, ost, vest).
 #' @param habitat Needed if obs and exp not provided. Type of habitat (skogsmark, gressmark).
 #' @param year Needed if obs not provided. Year of observations.
@@ -15,6 +15,20 @@
 #' @param nIter Numeric. How many replicate draws for the uncertainty calculations. Set 0 or NULL for no uncertainty estimation.
 #' @param save.draws Boolean. Should the draws be saved
 #' @param digits Integer. How many digits of precision to use.
+#'
+#'
+#' @examples
+#' \dontrun{
+#'
+#' hInd2023TrondGress <- calcInd(type = "Bumblebees",
+#' region_short = "Trond",
+#' habitat = "Gressmark",
+#' year = 2023,
+#' nIter = nIter,
+#' save.draws = T)
+#'
+#' }
+#'
 #'
 #'
 #' @export

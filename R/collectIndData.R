@@ -10,27 +10,42 @@
 #'
 #' @return a tibble with indicator point estimates and lower and upper uncertainty bounds.
 #'
+#' @examples
+#'
+#' \dontrun{
+#'
+#' data("hInd2010OstGress")
+#' data("hInd2011OstGress")
+#'
+#' tt <- collectIndData(type = "Bumblebees",
+#'                      habitat = "Gressmark",
+#'                      years = 2010:2011)
+#'
+#' }
+#'
+#'
 #' @export
 
-collectIndData <- function(taxa = c("bumblebees", "butterflies"),
-                           habitat = c("gressmark", "skogsmark"),
+collectIndData <- function(type = c("Bumblebees", "Butterflies"),
+                           habitat = c("Gressmark", "Skogsmark"),
                            years = 2009:2018) {
-  taxa <- match.arg(taxa, c = c("bumblebees", "butterflies"))
-  habitat <- match.arg(habitat, c("gressmark", "skogsmark"))
+
+  type <- match.arg(type, c = c("Bumblebees", "Butterflies"))
+  habitat <- match.arg(habitat, c("Gressmark", "Skogsmark"))
 
 
-  taxa <- switch(taxa,
-    "bumblebees" = "h",
-    "butterflies" = "s"
-  )
-
-  habitat <- switch(habitat,
-    "gressmark" = "Gress",
-    "skogsmark" = "Skog"
+  taxa <- switch(type,
+    "Bumblebees" = "h",
+    "Butterflies" = "s"
   )
 
 
-  comb <- expand.grid(taxa, "Ind", years, c("Ost", "Sor", "Trond", "Vest"), habitat)
+  habitat_cat <- switch(habitat,
+                        "Gressmark" = "Gress",
+                        "Skogsmark" = "Skog"
+  )
+
+  comb <- expand.grid(taxa, "Ind", years, c("Ost", "Sor", "Trond", "Vest"), habitat_cat)
 
   toLoad <- apply(comb, 1, paste0, collapse = "")
   # remove stuff not in environment
