@@ -50,7 +50,7 @@ collectIndData <- function(type = c("Bumblebees", "Butterflies"),
   toLoad <- apply(comb, 1, paste0, collapse = "")
   # remove stuff not in environment
   toLoad <- cbind(comb, toLoad)
-  toLoad <- toLoad[toLoad$toLoad %in% ls(envir = parent.frame()), ]
+  toLoad <- toLoad[toLoad$toLoad %in% data(package = "bombLepiSurv")$results[,"Item"], ]
   colnames(toLoad) <- c("Taxa", "ind", "Year", "Region", "Habitat", "toLoad")
 
   rawVals <- lapply(as.vector(toLoad$toLoad), function(x) get(x)[[1]])

@@ -1,6 +1,7 @@
 Package: bombLepiSurv
 Title: Calculate Nature Index Indicator Values For The Norwegian Bumblebee And Butterfly Surveys
-Version: 0.0.2.1
+Version: 0.0.2.2
+Date: 2024-12-20
 Authors@R: 
     person(given = "Jens",
            family = "Åström",

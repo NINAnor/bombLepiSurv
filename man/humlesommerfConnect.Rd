@@ -8,7 +8,7 @@ humlesommerfConnect(
   username = NULL,
   password = NULL,
   host = "T2lippgsql02.nina.no",
-  dbname = "humlesommerf",
+  dbname = "humlesommerf_refact",
   connectionName = "con",
   ...
 )

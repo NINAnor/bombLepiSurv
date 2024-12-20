@@ -5,21 +5,23 @@
 \title{getAllData}
 \usage{
 getAllData(
-  type = NULL,
-  habitat = NULL,
+  type = c("Bumblebees", "Butterflies"),
+  habitat = c("Gressmark", "Skogsmark"),
   year = 2009:2018,
   dataConnection = "con",
-  language = "norsk"
+  language = "Norsk"
 )
 }
 \arguments{
-\item{type}{bumblebees or butterflies}
+\item{type}{What data to get, "Bumblebees" or "Butterflies"}
 
-\item{habitat}{gressmark or skogsmark}
+\item{habitat}{Get data from what habitat type? Gressmark or Skogsmark}
 
 \item{year}{which year to get data from. Single year or span of years}
 
 \item{dataConnection}{name of the database connection}
+
+\item{language}{What language for the species names? "Latin" or "Norsk"}
 }
 \description{
 Get every record of bumblebees or butterflies from the database

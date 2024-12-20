@@ -11,6 +11,6 @@ An object of class \code{comm_index} (inherits from \code{list}) of length 8.
 sInd2022TrondGress
 }
 \description{
-All indicies from 2009 to 2018 based on 9999 bootstraps
+All indicies from 2009 to 2023 based on 9999 bootstraps
 }
 \keyword{datasets}

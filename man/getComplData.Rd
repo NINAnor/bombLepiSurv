@@ -5,19 +5,19 @@
 \title{getComplData}
 \usage{
 getComplData(
-  type = c("Humler", "Sommerfugler"),
-  region_short = c("Trond", "Ost", "Sor", "Vest"),
+  type = c("Bumblebees", "Butterflies"),
+  region_short = c("Trond", "Ost", "Sor", "Vest", "Nord"),
   habitat = c("Gressmark", "Skogsmark"),
   year = 2010,
   dataConnection = "con"
 )
 }
 \arguments{
-\item{type}{What data to get, "bumblebees" or "butterflies"}
+\item{type}{What data to get, "Bumblebees" or "Butterflies"}
 
-\item{region_short}{Get data from what region?}
+\item{region_short}{Get data from what region? "Trond", "Ost", "Sor", "Vest", "Nord"}
 
-\item{habitat}{Get data from what habitat type?}
+\item{habitat}{Get data from what habitat type? Gressmark or Skogsmark}
 
 \item{year}{Get data from what year?}
 }
