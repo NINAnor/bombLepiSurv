@@ -9,6 +9,12 @@
 #' @param addZeroes Add non-observed species, boolean
 #' @param addLegend Add legend, boolean
 #'
+#' @examples
+#' \dontrun{
+#'
+#'
+#'
+#' }
 #'
 #'
 #' @export
@@ -19,7 +25,24 @@ plotArt <- function(obs,
                     addZeroes = FALSE,
                     addLegend = FALSE,
                     ...) {
-  sum.obs <- sort(colSums(obs[, 3:length(obs)] > 0), decreasing = T)
+  to_remove <- c("dato",
+                 "flate",
+                 "transect",
+                 "Region",
+                 "Flate",
+                 "Transekt",
+                 "Habitattype",
+                 "Blomsterdekke",
+                 "Year",
+                 "Dato",
+                 "Periode",
+                 "Bombus spp.",
+                 "Lepidoptera spp.")
+
+  sum.obs <- obs %>%
+    select(-any_of(to_remove)) %>%
+    colSums() %>%
+    sort(., decreasing = T)
 
   if (!addZeroes) {
     sum.obs <- sum.obs[sum.obs > 0]

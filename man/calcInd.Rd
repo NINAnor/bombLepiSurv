@@ -23,7 +23,7 @@ calcInd(
 
 \item{exp}{Optional. Expectation community. Typically gotten from}
 
-\item{type}{Needed if obs and exp not provided. Type of taxa (bumblebees, butterflies)}
+\item{type}{Needed if obs and exp not provided. Type of taxa (Bumblebees, Butterflies)}
 
 \item{region_short}{Needed if obs and exp not provided. Shortname of region (sor, trond, ost, vest).}
 
@@ -44,4 +44,19 @@ Typically gotten from}
 }
 \description{
 Calculate indicator values, with uncertainty
+}
+\examples{
+\dontrun{
+
+hInd2023TrondGress <- calcInd(type = "Bumblebees",
+region_short = "Trond",
+habitat = "Gressmark",
+year = 2023,
+nIter = nIter,
+save.draws = T)
+
+}
+
+
+
 }

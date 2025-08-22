@@ -5,15 +5,15 @@
 \title{collectIndData}
 \usage{
 collectIndData(
-  taxa = c("bumblebees", "butterflies"),
-  habitat = c("gressmark", "skogsmark"),
+  type = c("Bumblebees", "Butterflies"),
+  habitat = c("Gressmark", "Skogsmark"),
   years = 2009:2018
 )
 }
 \arguments{
-\item{taxa}{bumblees or butterflies}
-
 \item{years}{what years to collect?}
+
+\item{taxa}{bumblees or butterflies}
 
 \item{habita}{gressmark or skogsmark}
 }
@@ -25,4 +25,19 @@ Bundle indicator values into a form that is easy to plot
 }
 \details{
 This function assumes that the environment holds a bunch of bumblebee or butterfly indicator objects with a specific naming format (e.g. hInd2014SorGress)
+}
+\examples{
+
+\dontrun{
+
+data("hInd2010OstGress")
+data("hInd2011OstGress")
+
+tt <- collectIndData(type = "Bumblebees",
+                     habitat = "Gressmark",
+                     years = 2010:2011)
+
+}
+
+
 }

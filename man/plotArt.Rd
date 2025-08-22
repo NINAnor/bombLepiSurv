@@ -18,3 +18,12 @@ plotArt(obs, exp, addZeroes = FALSE, addLegend = FALSE, ...)
 \description{
 Plot bumblebee and butterfly occurrences in the shiny app style
 }
+\examples{
+\dontrun{
+
+
+
+}
+
+
+}
