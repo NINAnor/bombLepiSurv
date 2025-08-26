@@ -7,9 +7,10 @@
 getAllData(
   type = c("Bumblebees", "Butterflies"),
   habitat = c("Gressmark", "Skogsmark"),
-  year = 2009:2018,
+  year = 2009:2024,
   dataConnection = "con",
-  language = "Norsk"
+  language = "Norsk",
+  includeEmptyTransects = FALSE
 )
 }
 \arguments{
@@ -25,4 +26,16 @@ getAllData(
 }
 \description{
 Get every record of bumblebees or butterflies from the database
+}
+\examples{
+
+#' \dontrun{
+
+humleSommerfuglConnect
+humlesommerfConnect()
+
+bumblebees_grass <- getTransectWalks(type = "Bumblebees",
+                                     habitat = "Gressmark",
+                                     includeEmptyTransects = TRUE)
+}
 }

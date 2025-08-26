@@ -29,10 +29,6 @@ This function assumes that the environment holds a bunch of bumblebee or butterf
 \examples{
 
 \dontrun{
-
-data("hInd2010OstGress")
-data("hInd2011OstGress")
-
 tt <- collectIndData(type = "Bumblebees",
                      habitat = "Gressmark",
                      years = 2010:2011)
