@@ -80,6 +80,7 @@ getAllData <- function(type = c("Bumblebees", "Butterflies"),
     dplyr::mutate(Region = ifelse(Region == "sor", "Sør", Region)) |>
     dplyr::mutate(Region = ifelse(Region == "trond", "Trøndelag", Region)) |>
     dplyr::mutate(Region = ifelse(Region == "vest", "Vest", Region)) |>
+    dplyr::mutate(Region = ifelse(Region == "nord", "Nord", Region)) |>
     dplyr::mutate(amount = as.integer(amount)) |>
     dplyr::collect() |>
     tidyr::pivot_wider(

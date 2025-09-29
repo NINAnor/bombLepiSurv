@@ -11,12 +11,12 @@
 
 
 getExpValues <- function(type = c("Bumblebees", "Butterflies"),
-                         region_short = c("Trond", "Ost", "Sor", "Vest"),
+                         region_short = c("Trond", "Ost", "Sor", "Vest", "Nord"),
                          habitat = c("Gressmark", "Skogsmark")) {
   type <- match.arg(type)
   region_short <- match.arg(region_short)
   habitat <- match.arg(habitat)
-  # Temporary as long as database has lowecase values. Could update database but prob breaks something else.
+  # Temporary as long as database has lowercase values. Could update database but prob breaks something else.
   type_cat <- switch(type,
     "Bumblebees" = "bumblebees",
     "Butterflies" = "butterflies"
@@ -25,7 +25,8 @@ getExpValues <- function(type = c("Bumblebees", "Butterflies"),
     "Trond" = "trond",
     "Ost" = "ost",
     "Sor" = "sor",
-    "Vest" = "vest"
+    "Vest" = "vest",
+    "Nord" = "nord"
   )
   habitat_cat <- switch(habitat,
     "Gressmark" = "gressmark",

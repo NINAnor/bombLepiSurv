@@ -27,7 +27,7 @@ getComplData <- function(type = c("Bumblebees", "Butterflies"),
   region_short <- match.arg(region_short)
   habitat <- match.arg(habitat)
   subset_year = year
-  # Temporary as long as database has lowecase values. Could update database but prob breaks something else.
+  # Temporary as long as database has lowercase values. Could update database but prob breaks something else.
   type_cat <- switch(type,
     "Bumblebees" = "bumblebees",
     "Butterflies" = "butterflies"
@@ -36,7 +36,8 @@ getComplData <- function(type = c("Bumblebees", "Butterflies"),
     "Trond" = "trond",
     "Ost" = "ost",
     "Sor" = "sor",
-    "Vest" = "vest"
+    "Vest" = "vest",
+    "Nord" = "nord"
   )
   habitat_cat <- switch(habitat,
     "Gressmark" = "gressmark",
