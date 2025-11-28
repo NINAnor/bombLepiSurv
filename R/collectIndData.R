@@ -41,7 +41,7 @@ collectIndData <- function(type = c("Bumblebees", "Butterflies"),
                         "Skogsmark" = "Skog"
   )
 
-  comb <- expand.grid(taxa, "Ind", years, c("Ost", "Sor", "Trond", "Vest"), habitat_cat)
+  comb <- expand.grid(taxa, "Ind", years, c("Ost", "Sor", "Trond", "Vest", "Nord"), habitat_cat)
 
   toLoad <- apply(comb, 1, paste0, collapse = "")
   # remove stuff not in environment
