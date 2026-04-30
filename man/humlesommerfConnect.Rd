@@ -2,16 +2,34 @@
 % Please edit documentation in R/humlesommerfConnect.R
 \name{humlesommerfConnect}
 \alias{humlesommerfConnect}
+\alias{connect_to_humlesommerf_db}
 \title{humlesommerfConnect}
 \usage{
 humlesommerfConnect(
   username = NULL,
   password = NULL,
-  host = "T2lippgsql02.nina.no",
-  dbname = "humlesommerf_refact",
+  host = "T2lippgsql03.nina.no",
+  dbname = "humle_sommerf",
   connectionName = "con",
   ...
 )
+
+connect_to_humlesommerf_db(
+  username = NULL,
+  password = NULL,
+  host = "T2lippgsql03.nina.no",
+  dbname = "humle_sommerf",
+  connectionName = "con",
+  ...
+)
+}
+\arguments{
+\item{username}{Optionally provide a username if you don't have that set up in ~/.pgpass}
+
+\item{password}{Optionally provide a password if you don't have that set up in ~/.pgpass. Don't store this scripts (or outputs).}
+}
+\value{
+A connection to the DB called 'con'
 }
 \description{
 Connect to the humlesommerf database at ninradardata01
