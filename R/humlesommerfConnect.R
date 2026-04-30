@@ -13,8 +13,8 @@
 humlesommerfConnect <- function(
     username = NULL,
     password = NULL,
-    host = "T2lippgsql02.nina.no",
-    dbname = "humlesommerf_refact",
+    host = "T2lippgsql03.nina.no",
+    dbname = "humle_sommerf",
     connectionName = "con",
     ...) {
   tmp <- DBI::dbConnect(RPostgres::Postgres(),
